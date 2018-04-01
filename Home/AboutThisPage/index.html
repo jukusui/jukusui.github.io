@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja" id="html">
+<head id="head">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Jukusui" />
+    <meta data-ajax="start-head" />
+    <title>&#x3053;&#x306E;&#x30DA;&#x30FC;&#x30B8;&#x306B;&#x3064;&#x3044;&#x3066; - &#x306D;&#x3080;&#x306D;&#x3054;&#x30E1;&#x30E2;</title>
+        <meta name="description" content="&#x4F55;&#x304B;&#x306E;&#x958B;&#x767A;&#x4E2D;&#x306B;&#x306F;&#x307E;&#x3063;&#x305F;&#x3053;&#x3068;&#x3092;&#x30E1;&#x30E2;&#x3057;&#x305F;&#x308A;&#x3059;&#x308B;&#x30DA;&#x30FC;&#x30B8;&#x3067;&#x3059;&#x3002;" />        <meta data-ajax="end-head" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.svg" type="image/svg" sizes="any" />
+    <link rel="mask-icon" href="/favicon.svg" type="image/svg" color="black" />
+    <meta name="theme-color" content="#7b00ff" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#7b00ff" />
+        <link rel="stylesheet" href="/CSS/main.min.css" />
+        <script src="/JS/main.min.js"></script>
+    <script src="/Lib/Prism/prism.js"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        extensions: ["jsMath2jax.js"]
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-AMS_HTML&locale=ja"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script></head>
+<body id="body" class="c1" data-ajax="replace-body-class">
+    <input id="menu-checkbox" type="checkbox" />
+    <input id="img-checkbox" type="checkbox" />
+    <header id="header">
+        <label for="menu-checkbox"><span></span><span></span><span></span></label>
+        <a href="/">&#x306D;&#x3080;&#x306D;&#x3054;&#x30E1;&#x30E2;</a>
+            <a href="/Category/develop/">develop</a>
+
+        <label id="menu-overlay" for="menu-checkbox" class="overlay"></label>
+        <span id="img-overlay" class="overlay no-ripple"><span></span></span>
+        <label id="img-input" for="img-checkbox"></label>
+    </header>
+    <meta data-ajax="start-body" />
+    <article id="main">
+        <section id="first" class="rect"><h1>このページについて</h1></section>
+
+<section id="article" class="rect">
+    <h2>なにこれ</h2>
+    <section>
+        <p>
+            何かの開発中にはまったことをメモしたりするページです。
+            メモ書き1/3、Web系の勉強1/3、自己満1/3、の3要素でできています。
+            どこかしらでお役に立てれば幸いです。
+        </p>
+    </section>
+
+    <h2>
+        Jukusui(著者)について
+    </h2>
+    <section class="float-box">
+        <div class="img-wrapper no-border float-left sm-top sm-right" style="height:48px;width:48px">
+            <img src="/icon.svg" title="おぼえている" alt="ねむる" />
+        </div>
+        <p>
+            PCいじりとゲームが趣味の学生。
+            プログラミングの出身がExcel VBAであることもあり、VB.NET経由で現在はC#が母語。
+            ゲームに関してはポケモンだったり、最近だとSplatoonだったりとコンソール系が基本。
+            <a href="https://mstdn.jp/@jukusui">mastodon(プライマリ)</a>
+            <a href="https://twitter.com/jukusui_zzz">twitter(セカンダリ)</a>
+        </p>
+    </section>
+
+    <h2>動作環境</h2>
+    <section>
+        <p>
+            最低限の表示はIE11でもできるようにしているが、一部の装飾に対応していない。
+            なので、Chrome、Edge、FireFox、Safari等のモダンブラウザの最新版を推奨。
+            表示確認はWin10上のFireFoxをメインに、Chrome、Edge、IEの最新版で行っています。
+        </p>
+        <p>
+            これら以外の環境のために追加のコードを書いたり、PolyFillを追加するつもりは基本的にありません。
+            Win7&amp;IE11で使っている人も<time datetime="2020-1-14">2020年の頭</time>にはサポートが切れますしOSのアップデートは如何でしょうか。
+            <s>8とか8.1の人は10にアップデートしてる...よね?</s>
+        </p>
+    </section>
+
+    <h2>サイトの構成</h2>
+    <section>
+        <h3>ホスティング</h3>
+        <section>
+            <h4><a href="https://pages.github.com/">GitHub Pages</a></h4>
+            <section>
+                <p>
+                    いわずと知れたGitリポジトリ ホスティングサービス、「GitHub」の機能の一つ。
+                    無料で静的なWebサイトを開ける。
+                    Gitでバージョン管理しながらホスティングできるので修正なんかの記録が残り便利。
+                    静的HTML生成ツールのJekyllが組み込まれているのでマークダウンを放り込むだけでもそれなりに動くとか。
+                    ただしJekyllはこのサイトでは使用していない。
+                </p>
+            </section>
+        </section>
+        <h3>サイト生成、ツール等</h3>
+        <section>
+            <h4><a href="https://www.asp.net/">ASP.NET Core</a></h4>
+            <section>
+                <p>
+                    .Net Frameworkを使用したWebサイト用のライブラリ。
+                    後々、Linuxでホストすることも考慮しCore版を採用。
+                    本当は動的なサイト用であるがクローラ的な動作をするプログラムを追加し、
+                    適当なフォルダにHTML等を放り投げられるように改造して使用。
+                </p>
+            </section>
+            <h4><a href="http://sass-lang.com/">SCSS(SASS)</a></h4>
+            <section>
+                <p>
+                    コンパイルでCSSを吐き出すちょっと便利なCSSの代替。
+                    セレクタのネストとか繰り返し処理とかが使える。
+                    このサイトはSCSS構文を使用して書いている。
+                </p>
+            </section>
+            <h4><a href="https://www.typescriptlang.org/">TypeScript</a></h4>
+            <section>
+                <p>
+                    コンパイルでJavaScriptを吐き出す、ちょっと便利なJSの代替(AltJS)の一つ。
+                    ブラウザを気にせずClassとかAsyncAwaitとかが使えたり何かと便利。
+                </p>
+            </section>
+        </section>
+        <h3>フロントエンドのライブラリ</h3>
+        <section>
+            <h4><a href="http://prismjs.com/">Prism</a></h4>
+            <section>
+                <p>
+                    様々なソースコードの構文ごとの強調を行うライブラリ。
+                    このサイトではVisual Studioのダークテーマ風にアレンジして使用している。
+                </p>
+            </section>
+            <h4><a href="https://www.mathjax.org/">Math Jax</a></h4>
+            <section>
+                <p>
+                    Math MLに対応していないブラウザでも数式をきれいに表示してくれるライブラリ。
+                    最近のMS Officeなら数式をTex形式でコピーできるので読みずらいXMLや波括弧を気にせず作成できる。
+                </p>
+            </section>
+            <h4><a href="https://mermaidjs.github.io/">mermaid</a></h4>
+            <section>
+                <p>
+                    フローチャートなどの描画を行うライブラリ。
+                    いちいち画像を作成する必要がなくなり、変更も楽になる。
+                </p>
+            </section>
+            <p>
+                各種ライセンス表記は<a href="/Home/License/">こちら</a>。
+            </p>
+        </section>
+    </section>
+</section>
+
+    </article>
+    <meta data-ajax="end-body" />
+    <div id="loader">
+        <div class="progress-ring"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </div>
+    <footer id="footer">
+        <a href="/Home/AboutThisPage/">サイトの詳細</a>
+        <a href="/Home/Contact/">問い合わせ先</a>
+        <span>&#xA9;2018 Jukusui</span>
+    </footer>
+</body>
+</html>
