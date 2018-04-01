@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja" id="html">
+<head id="head">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Jukusui" />
+    <meta data-ajax="start-head" />
+    <title>Razor&#x3092;&#x4F7F;&#x7528;&#x3059;&#x308B;&#x969B;&#x306E;&#x30E1;&#x30E2; - &#x306D;&#x3080;&#x306D;&#x3054;&#x30E1;&#x30E2;</title>
+        <meta name="description" content="ASP.NET MVC&#x306E;Razor&#x69CB;&#x6587;&#x3092;&#x4F7F;&#x7528;&#x3059;&#x308B;&#x969B;&#x3001;&#x306F;&#x307E;&#x3063;&#x305F;&#x3053;&#x3068;&#x3092;&#x30E1;&#x30E2;&#x3059;&#x308B;&#x3002;" />        <meta name="keywords" content="develop,Razor,ASP.NET,.NET Framework" />            <link rel="amphtml" href="/Memo/RazorTips/AMP/">
+    <meta data-ajax="end-head" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.svg" type="image/svg" sizes="any" />
+    <link rel="mask-icon" href="/favicon.svg" type="image/svg" color="black" />
+    <meta name="theme-color" content="#7b00ff" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#7b00ff" />
+        <link rel="stylesheet" href="/CSS/main.min.css" />
+        <script src="/JS/main.min.js"></script>
+    <script src="/Lib/Prism/prism.js"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        extensions: ["jsMath2jax.js"]
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-AMS_HTML&locale=ja"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script></head>
+<body id="body" class="c2 HasToc" data-ajax="replace-body-class">
+    <input id="menu-checkbox" type="checkbox" />
+    <input id="img-checkbox" type="checkbox" />
+    <header id="header">
+        <label for="menu-checkbox"><span></span><span></span><span></span></label>
+        <a href="/">&#x306D;&#x3080;&#x306D;&#x3054;&#x30E1;&#x30E2;</a>
+            <a href="/Category/develop/">develop</a>
+
+        <label id="menu-overlay" for="menu-checkbox" class="overlay"></label>
+        <span id="img-overlay" class="overlay no-ripple"><span></span></span>
+        <label id="img-input" for="img-checkbox"></label>
+    </header>
+    <meta data-ajax="start-body" />
+        <div id="toc-space">
+            <nav id="toc" class="rect sticky">
+                
+    <a href="#Razor%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AE%E3%83%A1%E3%83%A2">Razorを使用する際のメモ</a><div><a href="#_ViewImports.cshtml%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">_ViewImports.cshtmlについて</a><a href="#%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AE%E5%9F%8B%E3%82%81%E8%BE%BC%E3%81%BF%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">コードの埋め込みについて</a><div><a href="#HTML%E3%81%AE%E5%B1%9E%E6%80%A7">HTMLの属性</a><a href="#%E5%90%84%E7%A8%AE%E3%83%87%E3%83%BC%E3%82%BF%E7%AD%89%E3%81%AE%E5%9F%8B%E3%82%81%E8%BE%BC%E3%81%BF">各種データ等の埋め込み</a></div></div>
+
+            </nav>
+        </div>
+    <article id="main">
+
+    <section id="first" class="rect"> <h1 id="Razorを使用する際のメモ">Razorを使用する際のメモ</h1></section>
+    <aside id="info" class="rect">
+        <section>
+            <span class="publish">公開日 2018/04/01</span>
+        </section>
+        <section id="category">
+                <a class="button category" href="/Category/develop/">develop</a>
+        </section>
+        <section id="tag">
+                <a class="button tag" href="/Tag/Razor/">Razor</a>
+                <a class="button tag" href="/Tag/ASP.NET/">ASP.NET</a>
+                <a class="button tag" href="/Tag/.NET%20Framework/">.NET Framework</a>
+        </section>
+    </aside>
+
+        <section id="article" class="rect">
+    <p>ここではASP.NET Coreの環境を想定している。</p><h2 id="_ViewImports.cshtmlについて">_ViewImports.cshtmlについて</h2><section><p>_ViewImports.cshtmlに、<code>@using</code>や<code>@addTagHelper</code>などを書くことによって、
+全てのファイルでこれらが共有される。
+つまり、</p><pre><code>@using MyNamespace;
+@using static MyNamespace.MyHelperClass;
+</code></pre><p>のように書くことによって、<code>MyNamespace</code>や<code>MyHelperClass</code>を
+それぞれのcshtmlファイルに書く必要がなくなる。</p></section><h2 id="コードの埋め込みについて">コードの埋め込みについて</h2><section><h3 id="HTMLの属性">HTMLの属性</h3><section><p>HTMLの属性に文字列を読み込んで書き込む場合、
+シンプルな</p><pre><code>&lt;hoge huga="@Piyo.hoo"/&gt;
+</code></pre><p>レベルであれば問題ないが、</p><pre><code>&lt;hoge huga="@Piyo.foo + "bar""/&gt;
+</code></pre><p>というように文字列のクオーテーションが被る場合は、
+シングルクオートを使うよりかっこで囲んで、</p><pre><code>&lt;hoge huga="@(Piyo.foo + "bar")"/&gt;
+</code></pre><p>とする方が見た目が綺麗だと思う(好みによる)。</p></section><h3 id="各種データ等の埋め込み">各種データ等の埋め込み</h3><section><p>HTMLエンコードされたテキスト出力するだけであれば<code>@hoge</code>で出力できるが、
+エンコードされないようにするには用意されている関数を呼び出す必要がある。</p><p>まず、HTMLタグなどが入ったHTMLをHTMLとして出力する場合、
+<code>@Html.Raw</code>を使用する必要がある。
+例えば、HTMLファイルやCSSファイルなどを埋め込むなら、</p><pre><code>@Html.Raw(await System.IO.File.ReadAllTextAsync("relative/path"))
+</code></pre><p>でOKである。なお、相対パスはプロジェクトのパスが元となる。</p><p>つぎに、Jsonのデータを埋め込む場合は、</p><pre><code>@Json.Serialize(data)
+</code></pre><p>でシリアライズした上で埋め込むことができる。</p></section></section>
+</section>
+
+
+
+    <aside id="relative" class="rect">
+    <section>
+        <a href="" class="button no-color"></a>
+        <span>全体</span>
+        <a href="" class="button no-color"></a>
+    </section>
+</aside>
+
+    </article>
+    <meta data-ajax="end-body" />
+    <div id="loader">
+        <div class="progress-ring"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </div>
+    <footer id="footer">
+        <a href="/Home/AboutThisPage/">サイトの詳細</a>
+        <a href="/Home/Contact/">問い合わせ先</a>
+        <span>&#xA9;2018 Jukusui</span>
+    </footer>
+</body>
+</html>
