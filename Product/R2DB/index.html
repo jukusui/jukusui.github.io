@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja" id="html">
+<head id="head">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Jukusui" />
+    <meta data-ajax="start-head" />
+    <title>Redirect To Default Browser - &#x306D;&#x3080;&#x306D;&#x3054;&#x30E1;&#x30E2;</title>
+        <meta data-ajax="end-head" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.svg" type="image/svg" sizes="any" />
+    <link rel="mask-icon" href="/favicon.svg" type="image/svg" color="black" />
+    <meta name="theme-color" content="#7b00ff" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#7b00ff" />
+        <link rel="stylesheet" href="/CSS/main.min.css" />
+        <script src="/JS/main.min.js"></script>
+    <script src="/Lib/Prism/prism.js"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        extensions: ["jsMath2jax.js"]
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-AMS_HTML&locale=ja"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script></head>
+<body id="body" class="c1" data-ajax="replace-body-class">
+    <input id="menu-checkbox" type="checkbox" />
+    <input id="img-checkbox" type="checkbox" />
+    <header id="header">
+        <label for="menu-checkbox"><span></span><span></span><span></span></label>
+        <a href="/">&#x306D;&#x3080;&#x306D;&#x3054;&#x30E1;&#x30E2;</a>
+            <a href="/Category/develop/">develop</a>
+
+        <a href="/Product/">product</a>
+        <label id="menu-overlay" for="menu-checkbox" class="overlay"></label>
+        <span id="img-overlay" class="overlay no-ripple"><span></span></span>
+        <label id="img-input" for="img-checkbox"></label>
+    </header>
+    <meta data-ajax="start-body" />
+    <article id="main">
+        
+<section id="first" class="rect float-box">
+    <div class="img-wrapper no-border float-left sm-right" style="height:64px;width:64px">
+        <img src="/Images/R2DB.256.png" title="Redirect To Default Browser" alt="アイコン" />
+    </div>
+    <h1>Redirect To Default Browser</h1>
+</section>
+
+<section id="article" class="rect">
+    <h2>なにこれ</h2>
+    <section>
+        <p>
+            Windows 10の一部アプリケーション
+            はウェブサイトを開く際、既定のアプリに関係なくMicrosoft Edgeを使用します。
+            このアプリはこの挙動に割り込み既定のブラウザで開くことができるアプリです。
+        </p>
+    </section>
+    <h2>対応環境・アプリ</h2>
+    <section>
+        <p>
+            Windows 10 バージョン1803以降のCortana
+        </p>
+    </section>
+    <h2>配布ページ</h2>
+    <section>
+        <p>
+            Microsoft Storeにて配布しています。<s>「Microsoftを入手」って...</s>
+            <a href="https://www.microsoft.com/store/apps/9N86NDB1C3MP?ocid=badge"><img src="https://assets.windowsphone.com/bf9f34f8-2cee-48e4-952a-3d7fce09b74a/Japanese_-get-it-from-MS_InvariantCulture_Default.png" alt="Microsoft からダウンロード" height="32"/></a>
+        </p>
+    </section>
+    <h2>なにをしているの</h2>
+    <section>
+        <p>
+            普通にブラウザを開く際は、「http://」や「https://」といったURLスキーマ(Windowsの設定ではプロトコルと呼ばれている)を使います。
+            それに対し、「microsoft-edge://」を使用することで、Edgeを指名して開くことができます。
+            このアプリは後者でEdgeの代わりに呼び出されるように設定されることで動作し、microsoft-edgeのスキーマを通常のhttpやhttpsのURLに変換した上で既定のブラウザで開くことができます。
+            呼び出された際にだけ動くので起動時間は最小限に抑えられ、バッテリーにも優しい。
+        </p>
+    </section>
+    <h2>Q&amp;A</h2>
+    <section>
+        <dl>
+            <dt>Q: Edgeが起動する</dt>
+            <dd>
+                以下のことを確認して下さい。
+                <ol>
+                    <li>
+                        スタートメニューの全てのアプリケーションに「RedirectToDefaultBrowser」が存在するか確認<br />
+                        →ない場合、インストールされていません
+                    </li>
+                    <li>
+                        スタートメニューのから「RedirectToDefaultBrowser」を開き、URLを開いて何のブラウザが開くか確認<br />
+                        →Edgeだった場合、既定のアプリがEdgeになっています。<a href="ms-settings:defaultapps">ここ</a>で変更して下さい
+                    </li>
+                    <li>
+                        ファイル名を指定して実行(Win + R)に「microsoft-edge:?url=https://jukusui.github.io」を入力してEdgeが開くか確認<br />
+                        →希望のブラウザで開いた場合、起動元のアプリに対応していません。<a href="/Home/Contact/">お問合せください</a>。
+                    </li>
+                    <li>
+                        設定の「<a href="ms-settings:defaultapps">アプリ/既定のアプリ/</a>プロトコルごとに既定のアプリを選ぶ/MICROSOFT-EDGE」が「RedirectToDefaultBrowser」か確認<br />
+                        →違う場合、設定してください
+                    </li>
+                </ol>
+            </dd>
+            <dt>Q: CortanaからURLを開く際「パッケージIDがなんたら」というエラーが出る</dt>
+            <dd>
+                Windows 10 バージョン1803より前の環境で確認した既知の不具合です。
+                正直、こっち側の問題ではなさそうなので直せません。
+                OSをバージョンアップすれば直るはずです。
+                もしも、アップデートしてもこのエラーが出た場合、<a href="/Home/Contact/">お問合せください</a>。
+            </dd>
+            <dt>Q: 起動しない。もしくはエラーが出る</dt>
+            <dd>
+                こちらのページに従って、<a href="/Home/Contact/">お問合せください</a>。
+            </dd>
+            <dt>Q: 検索エンジン変えたい</dt>
+            <dd>
+                今後のアップデートで実装予定です。
+            </dd>
+        </dl>
+    </section>
+    <h2>注意点</h2>
+    <section>
+        <p>
+            このアプリを利用した上で生じた損害を一切保証しません。
+            また、元々Edgeで開かれる予定であったURLをあなたの選択した既定のブラウザで開くため、開かれたページにおいて何らかの不具合が生じる可能性、ブラウザに個人情報等が渡る可能性があることを十分留意してください。
+        </p>
+    </section>
+    <h2>プライバシーポリシー</h2>
+    <section>
+        <p>
+            このアプリは動作の上で知り得たURL等の情報を記録したり、ネットワークに送信したりすることはありません。
+        </p>
+    </section>
+</section>
+
+    </article>
+    <meta data-ajax="end-body" />
+    <div id="loader">
+        <div class="progress-ring"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </div>
+    <footer id="footer">
+        <a href="/Home/AboutThisPage/">サイトの詳細</a>
+        <a href="/Home/Contact/">問い合わせ先</a>
+        <span>&#xA9;2018 Jukusui</span>
+    </footer>
+</body>
+</html>

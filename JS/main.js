@@ -193,6 +193,8 @@ LoadManager.AddItem(new /** @class */ (function (_super) {
             var imgs = article.querySelectorAll("img");
             for (var i = 0; i < imgs.length; i++) {
                 var img = imgs[i];
+                if (img.parentElement.tagName.toLowerCase() == "a")
+                    continue;
                 img.classList.add("clickable");
                 this.addListener(img, "click", function (e) {
                     console.log("click=" + chkbx.checked);
