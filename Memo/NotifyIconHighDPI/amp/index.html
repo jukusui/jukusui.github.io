@@ -59,12 +59,12 @@
 今回のお話は動的生成自体ではなく、DPIの変更時にアイコンが酷い見た目になるのを対策することである。</p><h2 id="一般的なWindowの高DPI対応">一般的なWindowの高DPI対応</h2><section><p>Window側で、「WM_DISPLAYCHANGE」と「WM_DPICHANGED」の二つのメッセージをハンドルすればいい。
 ディスプレイの方がディスプレイ自体のDPIの変更とかでメッセージがくるし、DPIの方はDPIの違うモニターに行くとメッセージが行く。
 普通だったらこれでいい、普通だったら...。</p></section><h2 id="TaskBarの場合(失敗例)">TaskBarの場合(失敗例)</h2><section><p>上で挙げたメッセージ自体はTaskBarでも上のメッセージがしっかり生じている。
-<span class="img-group"><amp-img alt="タスクバーのメッセージ" height="234" width="577" src="/ImageOutputs/Memo/TaskBarDPI/SpyppTaskBar.PNG" srcset="/ImageOutputs/Memo/TaskBarDPI/SpyppTaskBar.PNG.400.png 400w , /ImageOutputs/Memo/TaskBarDPI/SpyppTaskBar.PNG 577w"></amp-img></span>
+<span class="img-group"><amp-img alt="タスクバーのメッセージ" height="234" width="577" src="/ImageOutputs/Memo/TaskBarDPI/SpyppTaskBar.png" srcset="/ImageOutputs/Memo/TaskBarDPI/SpyppTaskBar.png.400.png 400w , /ImageOutputs/Memo/TaskBarDPI/SpyppTaskBar.png 577w"></amp-img></span>
 なので、グローバルフックを用意すれば大丈夫と思っていた。
 このやり方自体には間違いはないのだろうが、プログラムは.Netであり、P/Invoke経由となる。
 このことに問題があったようで、まともに動作しなかった。
 (キーフックはしかできないとの情報と、数回のメッセージフックでよくわからないエラーを吐いた実体験より断定)</p></section><h2 id="TaskBarの場合(解決策)">TaskBarの場合(解決策)</h2><section><p>そこで、他のメッセージはないものかと探したところ、DPI変更時に以下のようなメッセージが届いていたことに気づいた。
-<span class="img-group"><amp-img alt="タスクバーのメッセージ" height="388" width="619" src="/ImageOutputs/Memo/TaskBarDPI/SpyppWin.PNG" srcset="/ImageOutputs/Memo/TaskBarDPI/SpyppWin.PNG.400.png 400w , /ImageOutputs/Memo/TaskBarDPI/SpyppWin.PNG 619w"></amp-img></span>
+<span class="img-group"><amp-img alt="タスクバーのメッセージ" height="388" width="619" src="/ImageOutputs/Memo/TaskBarDPI/SpyppWin.png" srcset="/ImageOutputs/Memo/TaskBarDPI/SpyppWin.png.400.png 400w , /ImageOutputs/Memo/TaskBarDPI/SpyppWin.png 619w"></amp-img></span>
 重要なのは[登録された"TaskbarCreated"]の部分である。
 ググっても出ないメッセージIDだと思ったがSpy++ではしっかり名前も教えてくれた。
 これがDPIが変更されたり、DPIが違うウィンドウの間でタスクバーを移動させたりすると呼び出される模様。
