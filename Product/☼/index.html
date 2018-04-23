@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja" id="html">
+<head id="head">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Jukusui" />
+    <meta data-ajax="start-head" />
+    <title>Brightness Configger - &#x306D;&#x3080;&#x306D;&#x3054;&#x30E1;&#x30E2;</title>
+        <meta data-ajax="end-head" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.svg" type="image/svg" sizes="any" />
+    <link rel="mask-icon" href="/favicon.svg" type="image/svg" color="black" />
+    <meta name="theme-color" content="#7b00ff" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#7b00ff" />
+        <link rel="stylesheet" href="/CSS/main.min.css" />
+        <script src="/JS/main.min.js"></script>
+    <script src="/Lib/Prism/prism.js"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        extensions: ["jsMath2jax.js"]
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-AMS_HTML&locale=ja"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script></head>
+<body id="body" class="c1" data-ajax="replace-body-class">
+    <input id="menu-checkbox" type="checkbox" />
+    <input id="img-checkbox" type="checkbox" />
+    <header id="header">
+        <label for="menu-checkbox"><span></span><span></span><span></span></label>
+        <a href="/">&#x306D;&#x3080;&#x306D;&#x3054;&#x30E1;&#x30E2;</a>
+            <a href="/Category/develop/">develop</a>
+
+        <a href="/Product/">product</a>
+        <label id="menu-overlay" for="menu-checkbox" class="overlay"></label>
+        <span id="img-overlay" class="overlay no-ripple"><span></span></span>
+        <label id="img-input" for="img-checkbox"></label>
+    </header>
+    <meta data-ajax="start-body" />
+    <article id="main">
+        
+<section id="first" class="rect float-box">
+    <div class="img-wrapper no-border float-left sm-right" style="height:64px;width:64px">
+        <img src="/Images/☼.256.png" title="Brightness Configger" alt="アイコン" />
+    </div>
+    <h1>Brightness Configger</h1>
+</section>
+
+<section id="article" class="rect">
+    <h2>なにこれ</h2>
+    <section>
+        <p>
+            画面の輝度を簡単に調整するためのアプリケーションです。
+            アクションセンターの25%刻みの調整では満足できない人や、外部ディスプレイの輝度調整をしたい人に向けです。
+            Windows10のデザインに合わせてあるので違和感なく使用できます。
+            <span class="img-group">
+                <span class="img-wrapper" style="width:28%;padding-top:14.5%"><img src="/ImageOutputs/Product/BrightnessConfigger/SS1.png" /></span>
+                <span class="img-wrapper" style="width:28%;padding-top:14.5%"><img src="/ImageOutputs/Product/BrightnessConfigger/SS2.png" /></span>
+                <span class="img-wrapper" style="width:28%;padding-top:14.5%"><img src="/ImageOutputs/Product/BrightnessConfigger/SS3.png" /></span>
+            </span>
+        </p>
+    </section>
+    <h2>対応環境</h2>
+    <section>
+        Windows 10 バージョン1607以降<br />
+        対応ディスプレイは以下の2通り
+        <ul>
+            <li>輝度設定がOS側でできるディスプレイ</li>
+            <li>DDC/CIに対応かつVGA、DVI、HDMI、DPのいずれかで接続したディスプレイ</li>
+        </ul>
+    </section>
+    <h2>配布ページ</h2>
+    <section>
+        <p>
+            Microsoft Storeでの配布を予定しています。
+        </p>
+    </section>
+    <h2>なにをしているの</h2>
+    <section>
+        <p>
+            WMIとWin32の二つを使ってディスプレイの輝度を調整しています。
+            前者は組み込みディスプレイなどのアクションセンターから調整できるようなディスプレイを調整できる。
+            対して後者は外付けディスプレイなどのデフォルトでは調整できないものを操作できる。
+            DIVやHDMI経由の場合は、モニターがDDC/CIという規格を使って設定を適用しているようです。
+        </p>
+    </section>
+    <h2>Q&amp;A</h2>
+    <section>
+        <dl>
+            <dt>ディスプレイ名がおかしい</dt>
+            <dd>
+                組み込みディスプレイはおかしくなることが多そうです。
+                諦めてください。
+            </dd>
+            <dt>ディスプレイが表示されない</dt>
+            <dd>
+                タスクトレイのアイコンを右クリックし、更新を押してみてください。
+                ディスプレイの構成が変化した際は自動で更新されますが、外付けディスプレイの場合、ディスプレイ側が起動し終えるまでディスプレイを取得できないため、画面が表示されてから再度更新を押してみてください。
+                更新しても表示されない場合、諦めてください。
+            </dd>
+            <dt>Q: 起動しない。もしくはエラーが出る</dt>
+            <dd>
+                複数のこのアプリを同時実行しようとした場合、後から起動したアプリはバージョン情報を表示します。
+                また、起動は少し遅いですが慌てずお待ち下さい。
+                もし、強制終了をしたりしてアイコンがトレイに残った場合、マウスを合わせるなどしてアイコンを除去してからでないと仕様上トレイに表示されません。
+                それ以外の問題については、こちらのページに従って<a href="/Home/Contact/">お問合せください</a>。
+            </dd>
+        </dl>
+    </section>
+    <h2>注意点</h2>
+    <section>
+        <p>
+            このアプリを利用した上で生じた損害を一切保証しません。
+        </p>
+    </section>
+    <h2>プライバシーポリシー</h2>
+    <section>
+        <p>
+            このアプリは動作の上で知り得た情報を記録したり、ネットワークに送信したりすることはありません。
+        </p>
+    </section>
+</section>
+
+    </article>
+    <meta data-ajax="end-body" />
+    <div id="loader">
+        <div class="progress-ring"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </div>
+    <footer id="footer">
+        <a href="/Home/AboutThisPage/">サイトの詳細</a>
+        <a href="/Home/Contact/">問い合わせ先</a>
+        <span>&#xA9;2018 Jukusui</span>
+    </footer>
+</body>
+</html>
