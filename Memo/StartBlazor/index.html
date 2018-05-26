@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja" id="html">
+<head id="head">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Jukusui" />
+    <meta data-ajax="start-head" />
+    <title>Blazor&#x3092;&#x4F7F;&#x3063;&#x3066;&#x307F;&#x308B; - &#x306D;&#x3080;&#x306D;&#x3054;&#x30E1;&#x30E2;</title>
+        <meta name="description" content="&#x30AF;&#x30E9;&#x30A4;&#x30A2;&#x30F3;&#x30C8;&#x30B5;&#x30A4;&#x30C9;&#x3067;C#&#x2B;Razor&#x304C;&#x4F7F;&#x3048;&#x308B;Blazor&#x3092;&#x4F7F;&#x3063;&#x3066;&#x307F;&#x3066;&#x601D;&#x3063;&#x305F;&#x70B9;" />        <meta name="keywords" content="develop,Razor,ASP.NET,.NET Framework,Blazor" />            <link rel="amphtml" href="/Memo/StartBlazor/AMP/" />
+    <meta data-ajax="end-head" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.svg" type="image/svg" sizes="any" />
+    <link rel="mask-icon" href="/favicon.svg" type="image/svg" color="black" />
+    <meta name="theme-color" content="#7b00ff" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#7b00ff" />
+        <link rel="stylesheet" href="/CSS/main.min.css" />
+        <script src="/JS/main.min.js"></script>
+    <script src="/Lib/Prism/prism.js"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        extensions: ["jsMath2jax.js"]
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-AMS_HTML&locale=ja"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script></head>
+<body id="body" class="c2 HasToc" data-ajax="replace-body-class">
+    <input id="menu-checkbox" type="checkbox" />
+    <input id="img-checkbox" type="checkbox" />
+    <header id="header">
+        <label for="menu-checkbox"><span></span><span></span><span></span></label>
+        <a href="/">&#x306D;&#x3080;&#x306D;&#x3054;&#x30E1;&#x30E2;</a>
+            <a href="/Category/develop/">develop</a>
+
+        <a href="/Product/">product</a>
+        <label id="menu-overlay" for="menu-checkbox" class="overlay"></label>
+        <span id="img-overlay" class="overlay no-ripple"><span></span></span>
+        <label id="img-input" for="img-checkbox"></label>
+    </header>
+    <meta data-ajax="start-body" />
+        <div id="toc-space">
+            <nav id="toc" class="rect sticky">
+                
+    <a href="#Blazor%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B">Blazorを使ってみる</a><div><a href="#%E6%83%85%E5%A0%B1%E6%BA%90">情報源</a><a href="#Blazor%E3%81%A8%E3%81%AF">Blazorとは</a><a href="#%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89">環境構築</a><a href="#%E7%89%B9%E5%BE%B4%E3%81%A8%E6%B3%A8%E6%84%8F%E7%82%B9">特徴と注意点</a><a href="#Routing">Routing</a><div><a href="#Binding">Binding</a><a href="#Event">Event</a></div><a href="#Attribute%E6%8C%87%E5%AE%9A%E3%81%AE%E4%BE%8B">Attribute指定の例</a></div>
+
+            </nav>
+        </div>
+    <article id="main">
+
+    <section id="first" class="rect"> <h1 id="Blazorを使ってみる">Blazorを使ってみる</h1></section>
+    <aside id="info" class="rect">
+        <section>
+            <span class="publish">公開日 2018/05/26</span>
+        </section>
+        <section id="category">
+                <a class="button category" href="/Category/develop/">develop</a>
+        </section>
+        <section id="tag">
+                <a class="button tag" href="/Tag/Razor/">Razor</a>
+                <a class="button tag" href="/Tag/ASP.NET/">ASP.NET</a>
+                <a class="button tag" href="/Tag/.NET%20Framework/">.NET Framework</a>
+                <a class="button tag" href="/Tag/Blazor/">Blazor</a>
+        </section>
+    </aside>
+
+        <section id="article" class="rect">
+    <h2 id="情報源">情報源</h2><section><p>これらの情報を元にテスト時に気づいたことを書きました。</p><ul>
+<li><a href="https://blazor.net/docs/">公式ドキュメント</a></li>
+<li><a href="https://github.com/aspnet/Blazor">リポジトリ</a></li>
+<li><a href="https://learn-blazor.com/">Learn Blazor</a></li>
+</ul></section><h2 id="Blazorとは">Blazorとは</h2><section><p>簡単に言えばRazorをクライアントサイドで動かすためのフレームワークです。
+現時点ではβ版で不安定なところもあるが、慣れた言語とNugetの豊富なパッケージを使ってWebコンテンツを作成できる。</p></section><h2 id="環境構築">環境構築</h2><section><p><a href="https://blazor.net/docs/get-started.html">公式ドキュメント</a>
+に書いてあります。やることは下の3つ</p><ul>
+<li><a href="https://www.microsoft.com/net/download/all">.Net Core 2.1.300以降のSDK</a>を入れる</li>
+<li>Visual Studio 2017 15.7以降を入れる</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=aspnet.blazor">ASP.NET Core Blazor Language Services</a>を入れる</li>
+</ul><p>注意点としては、.Net Core SDKを入れなくても動作はしたが
+VS上のcshtmlにエラー表示がされたことと、
+拡張機能を入れないと新しいプロジェクトにテンプレートが表示されないことの2つ。</p></section><h2 id="特徴と注意点">特徴と注意点</h2><section></section><h2 id="Routing">Routing</h2><section><p>ページの指定はそれぞれのcshtmlの先頭に<code>@page "/hoge"</code>といった具合。
+パラメータを付けることも可能で<code>@page "/hoge/{huga}"</code>とすれば、<code>@function</code>内のhugaプロパティに「Parameter」属性を付けておけば値が書き込まれる。
+その他のURLに関する操作は<code>IUriHelper</code>を使用することで可能になる。
+これの利用法は少し特殊で<code>@inject Microsoft.AspNetCore.Blazor.Services.IUriHelper UriHelper</code>と記述することで読み込まれる。</p><p>初回の起動は遅いものの、一度ロードすればページの遷移はクライアントサイドのみで行われるためとても高速。</p><h3 id="Binding">Binding</h3><section><p>Razorではサーバーサイドのみだったため、生成すれば送って終了であったが、クライアントサイドで動くBlazorでは後からの各種値の変更が可能である。
+基本的にはAttributeの値とInnerTextがBinding可能である模様。他には、forの上限値やforeachのリストなど結構自由度が高い。</p><p>また、inputタグではvalueの双方向のBindingが可能。
+既定ではフォーカスを失った際(JSで言う<code>onchange</code>)にのみ更新が行われます。
+更新のイベントを指定することも可能だが、<a href="https://github.com/aspnet/Blazor/issues/821">エラーが出る</a>ので今は出来ない。
+これを使えるようになれば1文字ずつの更新も簡単にできるはず。</p><p>WPFの<code>INotityPropertyChanged</code>や<code>DependencyProperty</code>のようにモデル自らが通知する実装ではないため、DirtyCheckで実装されている?
+もしかしたら規模が大きくなるとパフォーマンスに影響が出るかもしれない?
+Blazor特有の注意点として、更新の際は<code>@{}</code>の中身が再計算されるので、クエリパラメータの変更をする場合は意識したい。</p></section><h3 id="Event">Event</h3><section><p>イベントのコールバックはAttributeに関数名を記述することで可能。
+async関数の指定も可能。現状、最初のawaitで制御が帰った時と、Taskが終了した際にBindingの更新がされる模様。
+なので、ボタンの有効無効を切り替えるだけなら意識せずに使える。
+しかし、進捗状況を報告するような場合は<code>StateHasChanged</code>を呼び出す必要あり。</p></section></section><h2 id="Attribute指定の例">Attribute指定の例</h2><section><p>以下のコードでは、「双方向の<code>message</code>変数のBinding」、「クリック時の<code>OnClickCallback</code>関数の呼び出し」、「<code>hasError</code>変数があるときにクラスを追加」、「<code>isDisabled</code>変数がTrueの時に<code>disabled</code>Attributeを付加」、の計4つを指定した場合である。</p><pre><code class="language-cshtml">&lt;input type="text"
+    bind=@message
+    onclick=@OnClickCallback
+    class="@(hasError?"Error":"")"
+    disabled=@isDisabled /&gt;
+</code></pre></section>
+</section>
+
+
+
+    <aside id="relative" class="rect">
+    <section>
+        <a href="/Memo/NotifyIconHighDPI/" class="button no-color">&#x901A;&#x77E5;&#x30A2;&#x30A4;&#x30B3;&#x30F3;&#x306E;&#x9AD8;DPI&#x5BFE;&#x5FDC;</a>
+        <span>全体</span>
+        <a href="" class="button no-color"></a>
+    </section>
+    <section>
+        <a href="/Memo/NotifyIconHighDPI/" class="button no-color">&#x901A;&#x77E5;&#x30A2;&#x30A4;&#x30B3;&#x30F3;&#x306E;&#x9AD8;DPI&#x5BFE;&#x5FDC;</a>
+        <span>develop</span>
+        <a href="" class="button no-color"></a>
+    </section>
+</aside>
+
+    </article>
+    <meta data-ajax="end-body" />
+    <div id="loader">
+        <div class="progress-ring"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </div>
+    <footer id="footer">
+        <a href="/Home/AboutThisPage/">サイトの詳細</a>
+        <a href="/Home/Contact/">問い合わせ先</a>
+        <span>&#xA9;2018 Jukusui</span>
+    </footer>
+</body>
+</html>

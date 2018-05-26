@@ -444,8 +444,7 @@ img.clickable {
     border: 2px solid black;
     margin: 6px calc(2.5% - 2px); }
   #article span.img-group .dumy-img {
-    display: inline-block;
-    margin: 8px 2.5%; }
+    display: inline-block; }
   #article span.img-group amp-img.no-border {
     margin: 8px; }
   #article span.img-group amp-img:not(.no-border) {
@@ -477,7 +476,6 @@ img.clickable {
     /*justify-content: center;
         align-items: center;*/
     box-sizing: border-box;
-    background-color: rgba(0, 0, 0, 0.3);
     margin-top: calc(2rem + 16px);
     position: absolute;
     width: 100%;
@@ -490,9 +488,7 @@ img.clickable {
     #img-overlay > span.raw-size {
       overflow: auto; }
       #img-overlay > span.raw-size img {
-        display: block;
-        height: auto;
-        width: auto; }
+        object-fit: none; }
 
 #img-input {
   position: fixed;

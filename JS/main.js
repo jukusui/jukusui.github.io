@@ -105,7 +105,7 @@ var LoadManager = /** @class */ (function () {
         }
     };
     LoadManager.RaiseReady = function () {
-        {
+        { //ライブラリの再起動
             MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
             Prism.highlightAll();
             mermaid.init();
@@ -181,7 +181,7 @@ LoadManager.AddItem(new /** @class */ (function (_super) {
             chkbx.checked = false;
         };
         this.PreUnLoadFuncs.push(close);
-        {
+        { //イベントリスナ
             this.addListener(chkbx, "change", function () {
                 console.log("change=" + chkbx.checked);
                 if (!chkbx.checked)
@@ -614,7 +614,7 @@ LoadManager.AddItem(new /** @class */ (function (_super) {
             var margin_1 = 8;
             var update = function () {
                 if (window.getComputedStyle(toc).position === "sticky") {
-                    {
+                    { //目次の高さ調整
                         //画面内の絶対座標
                         var wPos = wrapper.getBoundingClientRect();
                         //親のTopと最小のMargin
@@ -623,7 +623,7 @@ LoadManager.AddItem(new /** @class */ (function (_super) {
                         var bottom = Math.min(wPos.bottom, window.innerHeight - margin_1);
                         toc.style.maxHeight = (bottom - top) + "px";
                     }
-                    {
+                    { //現在読んでいる内容
                         var last = null;
                         var hs = main.querySelectorAll("h1,h2,h3,h4,h5,h6");
                         if (hs.length)
