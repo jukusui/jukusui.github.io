@@ -218,6 +218,20 @@ LoadManager.AddItem(new /** @class */ (function (_super) {
     };
     return ImgClick;
 }(LoadManager))());
+var AwaitUtil = /** @class */ (function () {
+    function AwaitUtil() {
+    }
+    AwaitUtil.Immidiate = function () {
+        return new Promise(function (res) { return setImmediate(res); });
+    };
+    AwaitUtil.AnimationFrame = function () {
+        return new Promise(function (res) { return requestAnimationFrame(function () { return res(); }); });
+    };
+    AwaitUtil.Timeout = function (mill) {
+        return new Promise(function (res) { return setTimeout(res, mill); });
+    };
+    return AwaitUtil;
+}());
 var Awaiter = /** @class */ (function () {
     function Awaiter() {
         var _this = this;
