@@ -111,9 +111,16 @@
             <dd>
                 こちらのページに従って、<a href="/Home/Contact/">お問合せください</a>。
             </dd>
-            <dt>Q: 検索エンジン変えたい</dt>
+            <dt>Q: リダイレクトの詳しい情報</dt>
             <dd>
-                今後のアップデートで実装予定です。
+                リダイレクトは.Net Framework標準の正規表現ライブラリを使用して置き換えを行っています。
+                Microsoftの<a href="https://docs.microsoft.com/dotnet/standard/base-types/regular-expression-language-quick-reference#substitutions">このページ</a>が分かりやすいです。
+                下に例を挙げますが、上のページを見ながらいじるが良いでしょう。<br />
+                <br />
+                検索エンジンを変更する例<br />
+                <span>入力パターン(共通)→<code>^https?://www\.bing\.com/search\?(|.*&)q=(.*?)(&.*$|$)</code></span><br />
+                <span>出力パターン(Google)→<code>https://www.google.co.jp/search?q=$2</code></span><br />
+                <span>出力パターン(Yahoo)→<code>https://search.yahoo.co.jp/search?q=$2</code></span><br />
             </dd>
         </dl>
     </section>
@@ -127,7 +134,9 @@
     <h2>プライバシーポリシー</h2>
     <section>
         <p>
-            このアプリは動作の上で知り得たURL等の情報を記録したり、ネットワークに送信したりすることはありません。
+            このアプリは最後に起動した際のURLをローカルに保持します。それ以外の動作の上で知り得た情報(URLなど)を記録は行いません。
+            また、デフォルトに指定されたブラウザとEdgeブラウザ以外のアプリケーションには情報を渡しません。
+            さらに、URLで指定されたサーバー以外には情報をネットワークに送信することはありません。
         </p>
     </section>
 </section>
