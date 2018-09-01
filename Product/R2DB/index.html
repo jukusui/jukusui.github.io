@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja" id="html">
 <head id="head">
     <meta charset="utf-8" />
@@ -63,7 +63,10 @@
     <h2>配布ページ</h2>
     <section>
         <p>
-            Microsoft Storeでの配布を予定しています。
+            Microsoft Storeで配布しています。
+        </p>
+        <p>
+            <a href='//www.microsoft.com/store/apps/9N86NDB1C3MP?ocid=badge'><img src='https://assets.windowsphone.com/89a09a7e-c97a-4109-b9e3-3e58ffda5b3a/Japanese_-get-it-from-MS_InvariantCulture_Default.png' alt='Japanese badge' height="64" /></a>
         </p>
     </section>
     <h2>なにをしているの</h2>
@@ -84,15 +87,15 @@
                 <ol>
                     <li>
                         スタートメニューの全てのアプリケーションに「RedirectToDefaultBrowser」が存在するか確認<br />
-                        →ない場合、インストールされていません
+                        →ない場合、インストールされていません。
                     </li>
                     <li>
-                        スタートメニューのから「RedirectToDefaultBrowser」を開き、URLを開いて何のブラウザが開くか確認<br />
-                        →Edgeだった場合、既定のアプリがEdgeになっています。<a href="ms-settings:defaultapps">ここ</a>で変更して下さい
+                        スタートメニューから「RedirectToDefaultBrowser」を開き、URLを開いて何のブラウザが開くか確認<br />
+                        →Edgeだった場合、既定のアプリのWebブラウザがEdgeになっています。設定の「<a href="ms-settings:defaultapps">アプリ/既定のアプリ</a>」で変更して下さい。
                     </li>
                     <li>
                         ファイル名を指定して実行(Win + R)に「microsoft-edge:?url=https://jukusui.github.io」を入力してEdgeが開くか確認<br />
-                        →希望のブラウザで開いた場合、起動元のアプリに対応していません。<a href="/Home/Contact/">お問合せください</a>。
+                        →希望のブラウザで「開いた」場合、起動元のアプリに対応していません。<a href="/Home/Contact/">お問合せください</a>。
                     </li>
                     <li>
                         設定の「<a href="ms-settings:defaultapps">アプリ/既定のアプリ/</a>プロトコルごとに既定のアプリを選ぶ/MICROSOFT-EDGE」が「RedirectToDefaultBrowser」か確認<br />
@@ -115,7 +118,7 @@
             <dd>
                 リダイレクトは.Net Framework標準の正規表現ライブラリを使用して置き換えを行っています。
                 Microsoftの<a href="https://docs.microsoft.com/dotnet/standard/base-types/regular-expression-language-quick-reference#substitutions">このページ</a>が分かりやすいです。
-                下に例を挙げますが、上のページを見ながらいじるが良いでしょう。<br />
+                下に例を挙げますが、さらに調整するのならば上のページを見ながらいじるが良いでしょう。<br />
                 <br />
                 検索エンジンを変更する例<br />
                 <span>入力パターン(共通)→<code>^https?://www\.bing\.com/search\?(|.*&)q=(.*?)(&.*$|$)</code></span><br />
