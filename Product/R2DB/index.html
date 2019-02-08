@@ -69,6 +69,34 @@
             <a href='//www.microsoft.com/store/apps/9N86NDB1C3MP?ocid=badge'><img src='https://assets.windowsphone.com/89a09a7e-c97a-4109-b9e3-3e58ffda5b3a/Japanese_-get-it-from-MS_InvariantCulture_Default.png' alt='Japanese badge' height="64" /></a>
         </p>
     </section>
+    <h2>バージョン履歴</h2>
+    <section>
+        <details>
+            <summary>1.0.0.0</summary>
+            <p>初回リリース</p>
+        </details>
+        <details>
+            <summary>1.1.0.0</summary>
+            <section>
+                アイコン
+                <ul>
+                    <li>アイコンの見た目のサイズ調整</li>
+                    <li>Windows 19H1向けの白背景アイコンの追加<s>(現時点ではタスクバー位しか用途が)</s></li>
+                    <li>プログラム自体のアイコンを複数サイズに対応</li>
+                </ul>
+                機能強化
+                <ul>
+                    <li>設定ファイルをUWPの機能を使用するように</li>
+                    <li>エラー時に開こうとしたURLをクリップボードに保存できるように</li>
+                </ul>
+                バグ修正
+                <ul>
+                    <li>ブラウザで開ける状態にあるかのチェックを強化</li>
+                    <li>アプリ内のハイパーリンクを開いた際にプログラムが異常終了することがあるのを修正</li>
+                </ul>
+            </section>
+        </details>
+    </section>
     <h2>なにをしているの</h2>
     <section>
         <p>
@@ -118,7 +146,7 @@
             <dd>
                 リダイレクトは.Net Framework標準の正規表現ライブラリを使用して置き換えを行っています。
                 Microsoftの<a href="https://docs.microsoft.com/dotnet/standard/base-types/regular-expression-language-quick-reference#substitutions">このページ</a>が分かりやすいです。
-                下に例を挙げますが、さらに調整するのならば上のページを見ながらいじるが良いでしょう。<br />
+                下に例を挙げますが、さらに調整するのならば上のページを見ながらいじると良いでしょう。<br />
                 <br />
                 検索エンジンを変更する例<br />
                 <span>入力パターン(共通)→<code>^https?://www\.bing\.com/search\?(|.*&)q=(.*?)(&.*$|$)</code></span><br />
@@ -141,6 +169,9 @@
             このアプリは最後に起動した際のURLをローカルに保持します。それ以外の動作の上で知り得た情報(URLなど)を記録は行いません。
             また、デフォルトに指定されたブラウザとEdgeブラウザ以外のアプリケーションには情報を渡しません。
             さらに、URLで指定されたサーバー以外には情報をネットワークに送信することはありません。
+        </p>
+        <p>
+            なお、スタートメニューで右クリックした際に、最近の記録として複数回のURLを保存されているようですが、アプリケーション側から操作等は行っていません。
         </p>
     </section>
 </section>
