@@ -70,40 +70,56 @@
         </p>
     </section>
     <h2>バージョン履歴</h2>
-    <section>
+    <section class="version-info">
         <details>
             <summary>1.0.0.0</summary>
-            <p>初回リリース</p>
+            <dl>
+                <dt>初回リリース</dt>
+                <dd>特記事項無し</dd>
+            </dl>
         </details>
         <details>
             <summary>1.1.0.0</summary>
-            <section>
-                アイコン
-                <ul>
-                    <li>アイコンの見た目のサイズ調整</li>
-                    <li>Windows 19H1向けの白背景アイコンの追加<s>(現時点ではタスクバー位しか用途が)</s></li>
-                    <li>プログラム自体のアイコンを複数サイズに対応</li>
-                </ul>
-                機能強化
-                <ul>
-                    <li>設定ファイルをUWPの機能を使用するように</li>
-                    <li>エラー時に開こうとしたURLをクリップボードに保存できるように</li>
-                </ul>
-                バグ修正
-                <ul>
-                    <li>ブラウザで開ける状態にあるかのチェックを強化</li>
-                    <li>アプリ内のハイパーリンクを開いた際にプログラムが異常終了することがあるのを修正</li>
-                </ul>
-            </section>
+            <dl>
+                <dt>アイコン</dt>
+                <dd>アイコンの見た目のサイズ調整</dd>
+                <dd>Windows 19H1向けの白背景アイコンの追加<s>(現時点ではタスクバー位しか用途が)</s></dd>
+                <dd>プログラム自体のアイコンを複数サイズに対応</dd>
+
+                <dt>機能強化</dt>
+                <dd>設定ファイルをUWPの機能を使用するように</dd>
+                <dd>エラー時に開こうとしたURLをクリップボードに保存できるように</dd>
+
+                <dt>バグ修正</dt>
+                <dd>ブラウザで開ける状態にあるかのチェックを強化</dd>
+                <dd>アプリ内のハイパーリンクを開いた際にプログラムが異常終了することがあるのを修正</dd>
+            </dl>
+        </details>
+        <details open>
+            <summary>2.0.0.0</summary>
+            <dl>
+                <dt>UIが<s>無駄に</s>モダン化</dt>
+                <dd>全体のリダイレクトテスト機能が追加</dd>
+                <dd>アプリ側に多少の情報はこのWebサイトみたいに載せるように</dd>
+                <dd>Acrylic Blur(すりガラスっぽいやつ)やにも対応</dd>
+                <dd>完全なFluent Design対応は暇になってもたぶんやらない(特にTitleBar周りでアニメーションさせにくい)</dd>
+                <dd><strong>見た目</strong>は<small>たぶん</small>大切</dd>
+            </dl>
+            <dl>
+                <dt>Chromium Edge(新しいEdge)関係の不具合</dt>
+                <dd>Edge HTML(旧Edge)を名指しで起動していたのに関連する不具合を修正</dd>
+                <dd>今後、前回のURIをEdgeで開きなおす際、ユーザが開くEdgeを選択することになります</dd>
+            </dl>
         </details>
     </section>
     <h2>なにをしているの</h2>
     <section>
         <p>
-            普通にブラウザを開く際は、「http://」や「https://」といったURLスキーム(Windowsの設定ではプロトコルと呼ばれている)を使います。
-            それに対し、「microsoft-edge://」を使用することで、Edgeを指名して開くことができます。
+            普通にブラウザを開く際は、「http:」や「https:」といったURLスキーム(Windowsの設定ではプロトコルと呼ばれている)を使います。
+            それに対し、「microsoft-edge:」を使用することで、Edgeを指名して開くことができます。
+            Cortanaなどのアプリが「microsoft-edge:」から始まるURIを使用して、Edgeを名乗るブラウザを起動するようになっています。
             このアプリは後者でEdgeの代わりに呼び出されるように設定されることで動作し、microsoft-edgeのスキームを通常のhttpやhttpsのURLに変換した上で既定のブラウザで開くことができます。
-            呼び出された際にだけ動くので起動時間は最小限に抑えられ、バッテリーにも優しい。
+            呼び出された時に起動し、ブラウザを起動してすぐ終了するという動きを毎回行うため、シンプル(常駐やブラウザ拡張比)ながら安定した<small><s>(DLL Injection比)</s></small>動作ができます。
         </p>
     </section>
     <h2>Q&amp;A</h2>
@@ -129,6 +145,10 @@
                         設定の「<a href="ms-settings:defaultapps">アプリ/既定のアプリ/</a>プロトコルごとに既定のアプリを選ぶ/MICROSOFT-EDGE」が「RedirectToDefaultBrowser」か確認<br />
                         →違う場合、設定してください
                     </li>
+                    <li>
+                        インストールやリダイレクトの設定からまだ一度もPCを再起動していない<br />
+                        →一度再起動してみてください。(一部のCortanaでの症例)
+                    </li>
                 </ol>
             </dd>
             <dt>Q: CortanaからURLを開く際「パッケージIDがなんたら」というエラーが出る</dt>
@@ -145,14 +165,60 @@
             <dt>Q: リダイレクトの詳しい情報</dt>
             <dd>
                 リダイレクトは.Net Framework標準の正規表現ライブラリを使用して置き換えを行っています。
+                正規表現では入力文字列、入力パターン、(と出力パターン)が与えられたとき、入力パターンに入力文字列が合致するかを探すことができます。
                 Microsoftの<a href="https://docs.microsoft.com/dotnet/standard/base-types/regular-expression-language-quick-reference#substitutions">このページ</a>が分かりやすいです。
                 下に例を挙げますが、さらに調整するのならば上のページを見ながらいじると良いでしょう。<br />
                 <br />
-                検索エンジンを変更する例<br />
-                <span>入力パターン(共通)→<code>^https?://www\.bing\.com/search\?(|.*&)q=(.*?)(&.*$|$)</code></span><br />
-                <span>出力パターン(Wiki)→<code>https://ja.wikipedia.org/w/index.php?search=$2</code></span><br />
-                <span>出力パターン(Google)→<code>https://www.google.co.jp/search?q=$2</code></span><br />
-                <span>出力パターン(Yahoo)→<code>https://search.yahoo.co.jp/search?q=$2</code></span><br />
+                検索エンジンを変更する例
+                <ul>
+                    <li>入力パターン(共通)→<code>^https?://www\.bing\.com/search\?(|.*?&)q=(.*?)(&.*|)$</code></li>
+                    <li>出力パターン(Wikipedia)→<code>https://ja.wikipedia.org/w/index.php?search=$2</code></li>
+                    <li>出力パターン(Google)→<code>https://www.google.co.jp/search?q=$2</code></li>
+                    <li>出力パターン(Yahoo)→<code>https://search.yahoo.co.jp/search?q=$2</code></li>
+                </ul>
+                この入力パターンの意味は
+                <ul>
+                    <li><code>^</code>文字列の先頭</li>
+                    <li>http</li>
+                    <li><code>s?</code>「s」があるかないかのいずれか</li>
+                    <li>://www</li>
+                    <li><code>\.</code>「.」の入力は「\」とセットにする必要がある(エスケープ)</li>
+                    <li>bing</li>
+                    <li><code>\.</code>同上</li>
+                    <li>com</li>
+                    <li><code>\.</code>同上</li>
+                    <li>search</li>
+                    <li><code>\?</code>「?」の入力にも「\」が必要</li>
+                    <li>bing</li>
+                    <li>
+                        <code>(|.*&)</code>空かURIクエリの区切り文字の「&amp;」があるまで。これは
+                        <ul>
+                            <li><code>(aaa|bbb|...)</code>のように()で括って「|」で区切るといずれかにマッチすればいいという意味</li>
+                            <li><code>(|</code>のように始まるので空の場合と</li>
+                            <li><code>|.*&)</code>で終わるので「.*&amp;」にマッチするという意味</li>
+                            <li><code>.</code>は好きな文字を意味し</li>
+                            <li><code>*?</code>前のパターン(ここでは「.」)を好きな長さ(0以上)、なるべく短いマッチを探そうとする<small>(これが?無しだと二番目以降のqにマッチすることがある)</small></li>
+                            <li><code>.*&</code>で何らかの文字列の後、「&amp;」が来るという意味</li>
+                        </ul>
+                    </li>
+                    <li>q=</li>
+                    <li>
+                        <code>(.*?)</code>最短の好きな文字列とのマッチを無名で保存
+                        <ul>
+                            <li><code>.*?</code>上同様、マッチする最短の文字列という意味</li>
+                            <li><code>(aaa)</code>括弧自体には値をコピーして出力で使うための機能もあり、これは二番目の括弧なので$2で参照できる</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <code>(&.*|)</code>「(|.*&)」と順番が逆なだけでほぼ同じことだが
+                        <ul>
+                            <li><code>.*</code>?の付かない*はなるべく長いマッチを探そうとする</li>
+                        </ul>
+                    </li>
+                    <li><code>$</code>文字列の最後にマッチする</li>
+                </ul>
+                入力パターンは複雑だが、出力パターンはシンプルで出力したいURLの検索した文字が入る部分に<code>$2</code>を入れればOK。二番目の括弧の中身が入れられる。
+
             </dd>
         </dl>
     </section>

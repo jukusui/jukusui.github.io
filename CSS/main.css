@@ -1299,8 +1299,8 @@ body > input {
       border-top-right-radius: 8px;
       box-shadow: rgba(0, 0, 0, 0.4) 0 0 6px 0px; } }
 
-@supports not ((display: grid) and (display: contents)) { {
-    /*非サポート*/ }
+@supports not ((display: grid) and (display: contents)) {
+  /*非サポート*/
   .group > .rect.block-button > a, .inner-group > .rect.block-button > a {
     display: inline-block;
     width: 100%;
@@ -1340,8 +1340,8 @@ body > input {
       border-top-right-radius: 8px;
       box-shadow: rgba(0, 0, 0, 0.4) 0 0 6px 0px; } }
 
-@supports (display: grid) and (display: contents) { {
-    /*サポート*/ }
+@supports (display: grid) and (display: contents) {
+  /*サポート*/
   .group:not(.outer-group) > .rect > a, .inner-group > .rect > a {
     display: inline-block;
     width: 100%;
@@ -1412,6 +1412,18 @@ body > input {
 
 #article {
   min-width: 0; }
+
+section.version-info > details {
+  margin-top: 0.5rem; }
+  section.version-info > details:first-of-type {
+    margin-top: 0; }
+  section.version-info > details > dl {
+    margin-top: 0; }
+    section.version-info > details > dl:first-of-type {
+      margin-top: 0; }
+    section.version-info > details > dl > dd {
+      display: list-item;
+      list-style-type: disc; }
 
 /*#endregion*/
 /*#region 配置*/
@@ -1962,4 +1974,3 @@ code[class*="language-"] ::selection {
   color: inherit; }
 
 /*!End of Prism Part*/
-
