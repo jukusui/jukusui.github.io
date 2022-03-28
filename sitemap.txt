@@ -4,6 +4,8 @@ https://jukusui.github.io/Home/Contact/
 https://jukusui.github.io/Home/License/
 https://jukusui.github.io/Memo/NotifyIconHighDPI/
 https://jukusui.github.io/Memo/NotifyIconHighDPI/AMP/
+https://jukusui.github.io/Memo/R2DB_DllInjection/
+https://jukusui.github.io/Memo/R2DB_DllInjection/AMP/
 https://jukusui.github.io/Memo/RazorTips/
 https://jukusui.github.io/Memo/RazorTips/AMP/
 https://jukusui.github.io/Memo/StartBlazor/

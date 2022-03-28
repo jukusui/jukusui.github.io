@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja" id="html">
+<head id="head">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Jukusui" />
+    <meta data-ajax="start-head" />
+    <title>UWP&#x30A2;&#x30D7;&#x30EA;&#x3068;&#x3057;&#x3066;&#x306E;R2DB&#x306E;&#x4ECA;&#x5F8C; - &#x306D;&#x3080;&#x306D;&#x3054;&#x30E1;&#x30E2;</title>
+        <meta name="description" content="UWP&#x30A2;&#x30D7;&#x30EA;&#x3068;&#x3057;&#x3066;Redirect to Default Browser&#x3092;&#x5B58;&#x7D9A;&#x3055;&#x305B;&#x308B;&#x624B;&#x6CD5;&#x306B;&#x3064;&#x3044;&#x3066;" />        <meta name="keywords" content="develop,R2DB" />        <link rel="amphtml" href="/Memo/R2DB_DllInjection/AMP/" />
+    <meta data-ajax="end-head" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.svg" type="image/svg" sizes="any" />
+    <link rel="mask-icon" href="/favicon.svg" type="image/svg" color="black" />
+    <meta name="theme-color" content="#7b00ff" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#7b00ff" />
+        <link rel="stylesheet" href="/CSS/main.min.css" />
+        <script src="/JS/main.min.js"></script>
+    <script src="/Lib/Prism/prism.js"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        extensions: ["jsMath2jax.js"]
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-AMS_HTML&locale=ja"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script></head>
+<body id="body" class="c2 HasToc" data-ajax="replace-body-class">
+    <input id="menu-checkbox" type="checkbox" />
+    <input id="img-checkbox" type="checkbox" />
+    <header id="header">
+        <label for="menu-checkbox"><span></span><span></span><span></span></label>
+        <a href="/">&#x306D;&#x3080;&#x306D;&#x3054;&#x30E1;&#x30E2;</a>
+            <a href="/Category/develop/">develop</a>
+
+        <a href="/Product/">product</a>
+        <label id="menu-overlay" for="menu-checkbox" class="overlay"></label>
+        <span id="img-overlay" class="overlay no-ripple"><span></span></span>
+        <label id="img-input" for="img-checkbox"></label>
+    </header>
+    <meta data-ajax="start-body" />
+        <div id="toc-space">
+            <nav id="toc" class="rect sticky">
+                
+    <a href="#UWP%E3%82%A2%E3%83%97%E3%83%AA%E3%81%A8%E3%81%97%E3%81%A6%E3%81%AER2DB%E3%81%AE%E4%BB%8A%E5%BE%8C">UWPアプリとしてのR2DBの今後</a><div><a href="#%E3%81%93%E3%81%AE%E8%A8%98%E4%BA%8B%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">この記事について</a><a href="#%E6%83%B3%E5%AE%9A%E3%81%97%E3%81%A6%E3%81%84%E3%81%9F%E6%96%B9%E9%87%9D">想定していた方針</a><a href="#%E3%81%AA%E3%81%AB%E3%81%8C%E3%83%80%E3%83%A1%E3%81%AA%E3%81%AE%E3%81%8B">なにがダメなのか</a><a href="#%E4%BB%8A%E5%BE%8C%E3%81%AE%E6%96%B9%E9%87%9D">今後の方針</a></div>
+
+            </nav>
+        </div>
+    <article id="main">
+
+    <section id="first" class="rect"> <h1 id="UWPアプリとしてのR2DBの今後">UWPアプリとしてのR2DBの今後</h1></section>
+    <aside id="info" class="rect">
+        <section>
+            <span class="publish">公開日 2022/03/31</span>
+        </section>
+        <section id="category">
+                <a class="button category" href="/Category/develop/">develop</a>
+        </section>
+        <section id="tag">
+                <a class="button tag" href="/Tag/R2DB/">R2DB</a>
+        </section>
+    </aside>
+
+        <section id="article" class="rect">
+    <h2 id="この記事について">この記事について</h2><section><p>ここでは、「Desktop Bridgeを使用したUWP環境」・「標準のインストール手順」という条件のもとに動作するmicrosoft-edgeスキームリダイレクトについて試行錯誤したログ。
+<br><small>※ここでのUWPはコンテナ版のみではなくDesktop Bridgeを含むappx/msixパッケージ化済みアプリを指す</small></p></section><h2 id="想定していた方針">想定していた方針</h2><section><p>microsoft-edgeスキームの呼び出し元(例:Win+Rの際のexplorer.exe)の、CreateProcessをフックし、開く対象と引数を監視する。
+一致した時に引数などを上書きする。
+これにより、本来はmsedge.exeが開かれるべき部分で別のブラウザを指定したりURLの置換を行ったりできる。
+<span class="img-group"><span class="img-wrapper" style="width: 95%; padding-top: 21.87%"><img src="/ImageOutputs/../Images/R2DB_DllInjection.svg" alt="概略図"></span></span></p></section><h2 id="なにがダメなのか">なにがダメなのか</h2><section><p>主に2つ</p><ul>
+<li>リアルタイムでのプロセスの起動の監視が困難</li>
+<li>CreateProcessの呼ばれない場合の存在</li>
+</ul><p>1つめのプロセスの監視について、上の図で①として示した対象プロセスへの侵入であるが、プロセスの起動前に確実に行えるような手法はユーザー権限では存在しないようである。
+そのため、現在はWMIのWin32_Processオブジェクトの作成をポーリング(割り込みではない)にて検知している。
+よって1秒ごとや0.5秒ごとなどで確認をすることになる。
+しかし、edgeを開くために別のプログラムを開いてそこから起動するようなプログラムの場合は侵入が間に合わない。
+そのため、一回目の起動ではそのままedgeが開き、二回目以降は動くような挙動となる。
+<small>(explorerのヘルプボタンがこれに該当し、「helppane.exe」がボタン押下直後にedgeを起動する。)</small></p><p>2つめについて、ShellExecuteを含む基本的なプロセスの作成方法では最終的にCreateProcessが呼ばれる。
+しかし、一部のプログラムにおいては呼ばれないようである。
+<small>(「SearchApp」(スタート横の検索)が該当し、「sihost.exe」が起動していることは判明しているがsihostではCreateProcess(A/W)は呼び出されないようだ。
+また、「helppane.exe」や「sihost.exe」の起動に関しても検知できないが、これは「svchost.exe」が起動を代理していることが原因である。)</small></p><p>起動元にプログラムに働きかける方式はユーザ権限で動き、edgeの余計な起動を起こさない手法ということで実装していたが、権限的な限界というよりAPIや挙動的な問題が大きかった。</p></section><h2 id="今後の方針">今後の方針</h2><section><p>現状だと先発の<a href="https://github.com/rcmaehl/MSEdgeRedirect">MSEdgeRedirect</a>にてIFEOとして説明されているImage File Execution Optionsを用いたで手法で検討中。
+UWPを前提とした懸念点は下の３つ。</p><ul>
+<li><a href="https://docs.microsoft.com/ja-JP/uwp/schemas/appxpackage/uapmanifestschema/element-desktop6-registrywritevirtualization">レジストリの編集</a></li>
+<li>要管理者権限(レジストリ・edgeのコピー)</li>
+<li>コンピュータ単位(非ユーザ単位)でのインストール</li>
+</ul><p>一つ目の時点で無理そうなのでUWPは諦めた上で作成することになると見込まれる。
+普通に要管理者なmsiベースのインストーラを準備して、普通にWebサイトで細々と公開、msiをStoreに投げるだけ投げて許可されれば非UWPアプリとしてWindows Storeに戻れるかもしれないという感じ。</p><p>IFEOの挙動について詳しくないし、代替アプリは多数あると思うのでのんびりと作成したい。</p></section>
+</section>
+
+
+
+    <aside id="relative" class="rect">
+    <section>
+        <a href="/Memo/StartBlazor/" class="button no-color">Blazor&#x3092;&#x4F7F;&#x3063;&#x3066;&#x307F;&#x308B;</a>
+        <span>全体</span>
+        <a href="" class="button no-color"></a>
+    </section>
+    <section>
+        <a href="/Memo/StartBlazor/" class="button no-color">Blazor&#x3092;&#x4F7F;&#x3063;&#x3066;&#x307F;&#x308B;</a>
+        <span>develop</span>
+        <a href="" class="button no-color"></a>
+    </section>
+</aside>
+
+    </article>
+    <meta data-ajax="end-body" />
+    <div id="loader">
+        <div class="progress-ring"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </div>
+    <footer id="footer">
+        <a href="/Home/AboutThisPage/">サイトの詳細</a>
+        <a href="/Home/Contact/">問い合わせ先</a>
+        <span>&#xA9;2018 Jukusui</span>
+    </footer>
+</body>
+</html>
