@@ -54,7 +54,7 @@
         <ul>
             <li>現在<b>正常に動作している環境では不要</b>です</li>
             <li>このプログラム<b>単体では動作しません</b></li>
-            <li><b><a href="/Product/R2DB/">Redirect To Default Browser</a>の「2.2.0.0」以降</b>(近日公開)が必要でです</li>
+            <li><b><a href="/Product/R2DB/">Redirect To Default Browser</a>の「2.2.0.0」以降</b>が必要でです</li>
         </ul>
     </section>
     <h2>なにこれ</h2>
@@ -73,7 +73,7 @@
     <h2>配布</h2>
     <section>
         <p>
-            近日GitHub辺りで配布予定
+            <a href="https://github.com/jukusui/RedirectToDefaultBrowser/releases">GitHubにて配布</a>
         </p>
     </section>
     <h2>バージョン履歴</h2>
@@ -90,6 +90,11 @@
     <section>
         <p>
             インストールされたEdgeが起動する際、このプログラムが代わりに起動するようにWindows側にお願いしておくことで処理に割り込み、URLの書き換えを行っています。
+        </p>
+        <p>
+            IFEO(Image File Execution Options)のdebugger設定により、特定のmsedge.exeが起動する際にこのアプリが起動するようにしてあります。
+            これにより引数のチェック、起動するプログラムの変更を行っています。
+            この際、元のmsedge.exeは起動出来なくなってしまう？のでインストールフォルダに対してシンボリックリンクを作成、関係のない起動命令に対してはリンクの中のmsedge.exeを起動することで通常のブラウジングには使用できるようになっています。
         </p>
     </section>
     <h2>Q&amp;A</h2>
@@ -126,6 +131,15 @@
             <dt>Q: 起動しない。もしくはエラーが出る</dt>
             <dd>
                 こちらのページに従って、<a href="/Home/Contact/">お問合せください</a>。
+            </dd>
+
+            <dt>Q: Edgeのアップデートに失敗する</dt>
+            <dd>
+                既知の不具合となっています。以下のいずれかで対応ください。<br />
+                A.一時的にアンインストールする。<br />
+                B.普段使わない<a href="https://www.microsoftedgeinsider.com/ja-jp/download">Edge Beta</a>辺りを一つ追加でインストールし、そちらにのみリダイレクトを設定することで普段使いの方を最新に保てます。<br />
+                <small>(フォルダのシンボリックリンクを起動してるだけだから技術的には問題ないはずだが起動中のEdgeがフォルダ名の変更に対応していない模様)</small><br />
+                バックグラウンドでのアップデートにも失敗しているかは今後検証予定です。
             </dd>
         </dl>
     </section>
