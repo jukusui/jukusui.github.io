@@ -13,7 +13,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -189,7 +189,7 @@ LoadManager.AddItem(new /** @class */ (function (_super) {
         this.PreUnLoadFuncs.push(close);
         { //イベントリスナ
             this.addListener(chkbx, "change", function () {
-                console.log("change=" + chkbx.checked);
+                console.log("change=".concat(chkbx.checked));
                 if (!chkbx.checked)
                     close();
             });
@@ -203,7 +203,7 @@ LoadManager.AddItem(new /** @class */ (function (_super) {
                     continue;
                 img.classList.add("clickable");
                 this.addListener(img, "click", function (e) {
-                    console.log("click=" + chkbx.checked);
+                    console.log("click=".concat(chkbx.checked));
                     if (chkbx.checked)
                         overlaySpace.classList.toggle("raw-size");
                     else
@@ -361,12 +361,12 @@ function DOMEventsAsync(doc) {
     ];
 }
 function EventAsync(node, type) {
-    console.info(node.nodeName + ":" + type + ":START");
+    console.info("".concat(node.nodeName, ":").concat(type, ":START"));
     return new Promise(function (resolve, reject) {
         var func = function (e) {
             resolve(e);
             node.removeEventListener(type, func);
-            console.info(node.nodeName + ":" + type + ":DONE");
+            console.info("".concat(node.nodeName, ":").concat(type, ":DONE"));
         };
         addEventListener(type, func);
     });
@@ -662,7 +662,7 @@ LoadManager.AddItem(new /** @class */ (function (_super) {
                                 if (currentId !== null)
                                     toc.querySelector("a.current").classList.remove("current");
                                 currentId = last.id;
-                                var target = toc.querySelector("a[href=\"#" + encodeURI(last.id) + "\"]");
+                                var target = toc.querySelector("a[href=\"#".concat(encodeURI(last.id), "\"]"));
                                 if (target) {
                                     target.classList.add("current");
                                 }
@@ -674,7 +674,7 @@ LoadManager.AddItem(new /** @class */ (function (_super) {
                             currentId = null;
                         }
                         if (currentId !== null) {
-                            var target = toc.querySelector("a[href=\"#" + encodeURI(last.id) + "\"]");
+                            var target = toc.querySelector("a[href=\"#".concat(encodeURI(last.id), "\"]"));
                             if (target) {
                                 var pos = target.offsetTop + target.scrollTop + target.clientHeight / 2;
                                 toc.scrollTop = pos - toc.clientHeight / 2;
