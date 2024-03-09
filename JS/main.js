@@ -112,9 +112,9 @@ var LoadManager = /** @class */ (function () {
     };
     LoadManager.RaiseReady = function () {
         { //ライブラリの再起動
-            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            //MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
             Prism.highlightAll();
-            mermaid.init();
+            //mermaid.init();
         }
         LoadManager.DOMContentLoaded();
     };
