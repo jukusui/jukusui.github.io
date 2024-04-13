@@ -93,6 +93,7 @@ cite::after {
   padding: 2px 16px;
   border-radius: 2px;
   background-color: white;
+  cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.6) 0 0 4px 0px;
   transition: 0.2s;
   text-decoration: none;
@@ -762,9 +763,6 @@ h1.with-img > img, h2.with-img > img, h3.with-img > img, h4.with-img > img, h5.w
   width: 32px;
   height: 32px;
   color: hsl(269deg, 100%, 50%);
-}
-.progress-ring:not(.active) {
-  display: none;
 }
 .progress-ring > span {
   position: absolute;
@@ -1935,11 +1933,49 @@ body {
   padding: 0;
   z-index: 1000;
 }
+#loader:not(.progress-active):not(.reload-active):not(.message-active):not(.center-active) {
+  display: none;
+}
 #loader .progress-ring {
   top: -50px;
   left: -50px;
   height: 100px;
   width: 100px;
+}
+
+#loader:not(.progress-active) > .progress-ring {
+  display: none;
+}
+
+#center-info {
+  display: inline-block;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  font-size: 100px;
+}
+
+#loader-info {
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  white-space: nowrap;
+  top: 75px;
+  left: 0;
+  transform: translateX(-50%);
+  gap: 0.5em;
+}
+#loader-info > span {
+  display: inline-block;
+}
+
+#loader:not(.reload-active):not(.message-active) > #loader-info {
+  display: none;
+}
+
+#loader:not(.center-active) > #center-info {
+  display: none;
 }
 
 #main {

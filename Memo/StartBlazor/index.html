@@ -4,12 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Jukusui" />
-    <meta data-ajax="start-head" />
+    <meta data-start="head" />
     <title>Blazorを使ってみる - ねむねごメモ</title>
         <meta name="description" content="クライアントサイドでC#&#x2B;Razorが使えるBlazorを使ってみて思った点" />
         <meta name="keywords" content="develop,Razor,ASP.NET,.NET Framework,Blazor" />
         <link rel="amphtml" href="/Memo/StartBlazor/AMP/" />
-    <meta data-ajax="end-head" />
+    <meta data-end="head" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="icon" href="/favicon.svg" type="image/svg" sizes="any" />
     <link rel="mask-icon" href="/favicon.svg" type="image/svg" color="black" />
@@ -19,7 +19,7 @@
         <script src="/JS/main.min.js"></script>
     <script src="/Lib/Prism/prism.js"></script>
 </head>
-<body id="body" class="c2 HasToc" data-ajax="replace-body-class">
+<body id="body" class="c2 HasToc" data-replace="body-class">
     <input id="menu-checkbox" type="checkbox" />
     <input id="img-checkbox" type="checkbox" />
     <header id="header">
@@ -32,7 +32,7 @@
         <span id="img-overlay" class="overlay no-ripple"><span></span></span>
         <label id="img-input" for="img-checkbox"></label>
     </header>
-    <meta data-ajax="start-body" />
+    <meta data-start="body" />
         <div id="toc-space">
             <nav id="toc" class="rect sticky">
                 
@@ -107,9 +107,14 @@ async関数の指定も可能。現状、最初のawaitで制御が帰った時�
 </aside>
 
     </article>
-    <meta data-ajax="end-body" />
-    <div id="loader">
+    <meta data-end="body" />
+    <div id="loader" class=" " data-replace="loader-class">
         <div class="progress-ring"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <div id="center-info" data-replace="loaderCenter-innerHTML"></div>
+        <div id="loader-info">
+            <a class="button" onclick="OnReloadClick()">再読み込み</a>
+            <span id="loader-message" data-replace="loaderBottom-innerHTML"></span>
+        </div>
     </div>
     <footer id="footer">
         <a href="/Home/AboutThisPage/">サイトの詳細</a>
