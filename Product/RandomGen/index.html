@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja" id="html">
+<head id="head">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Jukusui" />
+    <meta data-start="head" />
+    <title>Random Gen - ねむねごメモ</title>
+    <meta data-end="head" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.svg" type="image/svg" sizes="any" />
+    <link rel="mask-icon" href="/favicon.svg" type="image/svg" color="black" />
+    <meta name="theme-color" content="#7b00ff" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#7b00ff" />
+        <link rel="stylesheet" href="/CSS/main.min.css" />
+        <script src="/JS/main.min.js"></script>
+    <script src="/Lib/Prism/prism.js"></script>
+</head>
+<body id="body" class="c1" data-replace="body-class">
+    <input id="menu-checkbox" type="checkbox" />
+    <input id="img-checkbox" type="checkbox" />
+    <header id="header">
+        <label for="menu-checkbox"><span></span><span></span><span></span></label>
+        <a href="/">ねむねごメモ</a>
+            <a href="/Category/develop/">develop</a>
+
+        <a href="/Product/">product</a>
+        <label id="menu-overlay" for="menu-checkbox" class="overlay"></label>
+        <span id="img-overlay" class="overlay no-ripple"><span></span></span>
+        <label id="img-input" for="img-checkbox"></label>
+    </header>
+    <meta data-start="body" />
+    <article id="main">
+        
+<section id="first" class="rect float-box">
+    <div class="img-wrapper no-border float-left sm-right" style="height:64px;width:64px">
+        <img src="/Images/RandomGen.256.png" title="Random Gen" alt="アイコン" />
+    </div>
+    <h1>Random Gen</h1>
+</section>
+
+<section id="article" class="rect">
+    <h2>なにこれ</h2>
+    <section>
+        <p>
+            サイコロの代替からパスワードの生成など、手軽にランダムな情報を得るためのアプリケーションです。
+            <span class="img-group">
+                <span class="img-wrapper" style="width:15%;padding-top:33.333%">
+                    <img src="/Images/RandomGen/SS.D1.png" title="サンプル画面" alt="サンプル画面" />
+                </span>
+                <span class="img-wrapper" style="width:15%;padding-top:33.333%">
+                    <img src="/Images/RandomGen/SS.D2.png" title="サンプル画面" alt="サンプル画面" />
+                </span>
+                <span class="img-wrapper" style="width:32.7%;padding-top:33.333%">
+                    <img src="/Images/RandomGen/SS.W1.png" title="サンプル画面" alt="サンプル画面" />
+                </span>
+            </span>
+        </p>
+    </section>
+    <h2>対応環境</h2>
+    <section>
+        <p>
+            Android 5.0(Lollipop)以降
+            ※近日公開
+        </p>
+        <p>
+            Windows 10 May 2020 Update(20H1,10.0.19041)以降
+            ※後日公開？
+        </p>
+        <p>
+            その他プラットフォームについても公開検討中
+        </p>
+    </section>
+    <h2>配布ページ</h2>
+    <section>
+        <p>
+            近日公開
+        </p>
+    </section>
+    <h2>バージョン履歴</h2>
+    <section class="version-info">
+        <details open>
+            <summary>0.8.0.1</summary>
+            <dl>
+                <dt>初回リリース</dt>
+                <dd>Androidにて公開予定</dd>
+            </dl>
+        </details>
+    </section>
+    <h2>注意点</h2>
+    <section>
+        <p>
+            乱数生成にセキュリティ機能向けのものを採用し、なるべく生成結果や順序に偏りが起きないよう配慮はしていますが、生成結果に対してそのようなことが起こらないことを保証を行うものではありません。
+            また、その他このアプリを利用した上で生じた損害を一切保証しません。
+            <small>
+                ※<a href="https://learn.microsoft.com/ja-jp/dotnet/api/system.security.cryptography.randomnumbergenerator">System.Security.Cryptography.RandomNumberGenerator</a>採用
+            </small>
+        </p>
+    </section>
+    <h2>プライバシーポリシー</h2>
+    <section>
+        <p>
+            このアプリは生成結果を外部へ送信することや、その他の個人情報等を収集することはありません。
+        </p>
+    </section>
+</section>
+
+    </article>
+    <meta data-end="body" />
+    <div id="loader" class=" " data-replace="loader-class">
+        <div class="progress-ring"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <div id="center-info" data-replace="loaderCenter-innerHTML"></div>
+        <div id="loader-info">
+            <a class="button" onclick="OnReloadClick()">再読み込み</a>
+            <span id="loader-message" data-replace="loaderBottom-innerHTML"></span>
+        </div>
+    </div>
+    <footer id="footer">
+        <a href="/Home/AboutThisPage/">サイトの詳細</a>
+        <a href="/Home/Contact/">問い合わせ先</a>
+        <span>©2018 Jukusui</span>
+    </footer>
+</body>
+</html>

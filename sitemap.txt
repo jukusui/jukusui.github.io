@@ -13,3 +13,4 @@ https://www.jukusui.net/Memo/StartBlazor/AMP/
 https://www.jukusui.net/Product/%E2%98%BC/
 https://www.jukusui.net/Product/R2DB_IFEO/
 https://www.jukusui.net/Product/R2DB/
+https://www.jukusui.net/Product/RandomGen/

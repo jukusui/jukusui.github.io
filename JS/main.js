@@ -776,9 +776,6 @@ if (history.pushState !== undefined && window.onpopstate !== undefined)
                             }
                             items = this.Insert(dom);
                             LoadManager.RaiseReady();
-                            //this.loader.classList.remove("progress-active");
-                            //this.loader.classList.remove("reload-active");
-                            //this.loader.classList.remove("message-active");
                             this.moveState = MoveState.Replaced;
                             console.debug("Replaced");
                             task = AttachCanceller(DoEvents());
@@ -1056,39 +1053,6 @@ if (history.pushState !== undefined && window.onpopstate !== undefined)
                 this.sharedAnchorElements = sharedAs;
             }
             this.temporaryAnchorElements = tempAs;
-            //}
-            //let allAs = new Set<HTMLAnchorElement>(document.querySelectorAll(A_QUERY));
-            //let sharedAs = new Set<HTMLAnchorElement>();
-            //if (this.sharedAnchorElements === undefined) {
-            //    for (var i = 0; i < starts.length; i++) {
-            //        var start = starts[i];
-            //        var current: Node = start.nextSibling;
-            //        while (current !== null) {
-            //            if (current instanceof HTMLElement) {
-            //                var elm = current as HTMLElement;
-            //                if (elm.matches("meta[data-ajax^='end'"))
-            //                    break;
-            //            }
-            //            var next = current.nextSibling;
-            //            current.parentElement.removeChild(current);
-            //            current = next;
-            //        }
-            //    }
-            //}
-            //let oldAs = this.anchorElements;
-            //let newAs = new Set<HTMLAnchorElement>(document.querySelectorAll("a[href^='/']"));
-            //let addedAs = [...newAs].filter(a => !oldAs.has(a));
-            //for (let elm of addedAs) {
-            //    let a = elm as HTMLAnchorElement;
-            //    //TODO:イベントリスナの最適化
-            //    this.addListener(a, "click", this.anchorClick.bind(this, a));
-            //}
-            //this.anchorElements = newAs;
-            //    NodeList
-            //    for (var i = 0; i < as.length; i++) {
-            //        var a = as[i] as HTMLAnchorElement;
-            //        this.addListener(a, "click", this.anchorClick.bind(this, a));
-            //    }
         };
         AnchorManager.prototype.Load = function () {
         };
