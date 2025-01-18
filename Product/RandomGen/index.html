@@ -61,7 +61,6 @@
     <section>
         <p>
             Android 5.0(Lollipop)以降
-            ※近日公開
         </p>
         <p>
             Windows 10 May 2020 Update(20H1,10.0.19041)以降
@@ -73,17 +72,102 @@
     </section>
     <h2>配布ページ</h2>
     <section>
-        <p>
-            近日公開
-        </p>
+        <h3>Android 版</h3>
+        <section>
+            <p>
+                Google Playで配布しています。
+            </p>
+            <div class="" style="padding:1rem">
+                <a href='https://play.google.com/store/apps/details?id=net.jukusui.randomgen&utm_source=web&utm_campaign=product-page&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
+                    <img alt='Google Play で手に入れよう' src='https://play.google.com/intl/en_us/badges/static/images/badges/ja_badge_web_generic.png'
+                         style="height:4rem" />
+                </a>
+                <br />
+                <small>※Google Play および Google Play ロゴはGoogle LLCの商標です。</small>
+            </div>
+        </section>
+        <h3>ソースコード</h3>
+        <section>
+            <p><a href="https://github.com/jukusui/RandomGenMaui">GitHub</a>にて公開しています。</p>
+        </section>
+    </section>
+    <h2>使い方</h2>
+    <section>
+        <div class="">各タブの入力などについての大まかな説明は下記のとおりです。</div>
+        <style>
+            dl.usage {
+                margin-block-start: 0.25rem;
+                margin-block-end: 0;
+            }
+
+                dl.usage > dd {
+                    margin-inline-start: 1.5em;
+                }
+        </style>
+        <h3>サイコロ</h3>
+        <section>
+            <dl class="usage">
+                <dt>最大</dt>
+                <dd>2～1,000,000の範囲の整数を入力可能</dd>
+                <dt>抽選ボタン</dt>
+                <dd>1～最大の範囲で整数をランダムに抽選</dd>
+            </dl>
+        </section>
+        <h3>並替え</h3>
+        <section>
+            <dl class="usage">
+                <dt>入力</dt>
+                <dd>
+                    個数か、名前(空白区切り)の入力が可能
+                    <br />個数：2～1,000の数値<small>(名前は1 2 3...の扱い)</small>
+                    <br />名前：2～1,000個の空白区切りの名前
+                </dd>
+                <dt>並替えボタン</dt>
+                <dd>個数分もしくは各名前分のデータをランダムに並び替え</dd>
+            </dl>
+        </section>
+        <h3>組分け</h3>
+        <section>
+            <dl class="usage">
+                <dt>入力</dt>
+                <dd>
+                    個数か、名前(空白区切り)の入力が可能
+                    <br />個数：2～1,000の数値<small>(名前は1 2 3...の扱い)</small>
+                    <br />名前：2～1,000個の空白区切りの名前
+                </dd>
+                <dt>組分け</dt>
+                <dd>
+                    組数か、各組の定員数(空白区切り)の入力が可能
+                    <br />組数：2～入力数の数値<small>(定員はなるべく均等になる)</small>
+                    <br />定員数：2～入力数個の空白区切りの定員数、合計は入力数と同じ必要がある<small>(偏った定員数が入力できる)</small>
+                </dd>
+                <dt>組分けボタン</dt>
+                <dd>個数分もしくは各名前分のデータを組分けで指定した定員数でランダムに組分け</dd>
+            </dl>
+        </section>
+        <h3>パスワード</h3>
+        <section>
+            <dl class="usage">
+                <dt>文字入力</dt>
+                <dd>
+                    どの文字種を使用するかの指定が可能
+                    <br />数値、大文字、小文字、記号<small>(記号は詳細設定可)</small>
+                    <br /><small>※表示のある基本的なASCII文字のみ指定が可能</small>
+                </dd>
+                <dt>桁数(出力する文字数)</dt>
+                <dd>1～100の範囲の整数を入力可能</dd>
+                <dt>生成ボタン</dt>
+                <dd>設定した文字種を使ってパスワードをランダムに作成する
+            </dl>
+        </section>
     </section>
     <h2>バージョン履歴</h2>
     <section class="version-info">
         <details open>
             <summary>0.8.0.1</summary>
             <dl>
-                <dt>初回リリース</dt>
-                <dd>Androidにて公開予定</dd>
+                <dt>初回リリース(2025/01/19)</dt>
+                <dd>Android版をGoogle Play上で公開</dd>
             </dl>
         </details>
     </section>
@@ -101,6 +185,19 @@
     <section>
         <p>
             このアプリは生成結果を外部へ送信することや、その他の個人情報等を収集することはありません。
+        </p>
+    </section>
+    <h2>あとがき・感想</h2>
+    <section>
+        <p>
+            MAUIの試食がてら作成したツールではありますが、使いどころはありそうだったためGooglePlayのお試しも兼ねて公開いたしました。
+            ネイティブには劣るもののそこそこ応答性良く仕上がっており、小さいツールであれば.NET MAUIもありと思えるものでした。
+        </p>
+        <p>
+            Webではなくせっかくネイティブで作ったため、今後はネイティブ系のAPIをしっかり叩くことや、ネイティブUIのミックスなどを視野に磨き上げを実施し、他ソフトなどへの利用可否の参考にしたいところです。
+        </p>
+        <p>
+            ただし、Windows版で若干表示が怪しい部分があるなど、新しめなフレームワークならではの欠点もありますので、そのあたりは気にしたうえで使う必要はありそうです。
         </p>
     </section>
 </section>
