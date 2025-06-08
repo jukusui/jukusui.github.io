@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Jukusui" />
     <meta data-start="head" />
-    <title>Brightness Configger - ねむねごメモ</title>
+    <title>もにまね(MoniMana) - ねむねごメモ</title>
     <meta data-end="head" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="icon" href="/favicon.svg" type="image/svg" sizes="any" />
@@ -34,33 +34,29 @@
         
 <section id="first" class="rect float-box">
     <div class="img-wrapper no-border float-left sm-right" style="height:64px;width:64px">
-        <img src="/Images/☼.256.png" title="Brightness Configger" alt="アイコン" />
+        <img src="/Images/MonitorManager.256.png" title="もにまね(MoniMana)" alt="アイコン" />
     </div>
-    <h1>Brightness Configger</h1>
+    <h1>もにまね(MoniMana)</h1>
 </section>
 
 <section id="article" class="rect">
     <h2>なにこれ</h2>
     <section>
         <p>
-            画面の輝度を簡単に調整するためのアプリケーションです。
-            アクションセンターの25%刻みの調整では満足できない人や、外部ディスプレイの輝度調整をしたい人に向けです。
-            Windows10のデザインに合わせてあるので違和感なく使用できます。
+            モニターの設定を簡単に調整するためのアプリケーションです。
+            ディスプレイの接続・切断や、外部ディスプレイの輝度調整や入力切替ができます。
+            Windows11のデザインに合わせてあるので違和感なく使用できます。
             <span class="img-group">
-                <span class="img-wrapper" style="width:28%;padding-top:14.5%"><img src="/ImageOutputs/Product/BrightnessConfigger/SS1.png" /></span>
-                <span class="img-wrapper" style="width:28%;padding-top:14.5%"><img src="/ImageOutputs/Product/BrightnessConfigger/SS2.png" /></span>
-                <span class="img-wrapper" style="width:28%;padding-top:14.5%"><img src="/ImageOutputs/Product/BrightnessConfigger/SS3.png" /></span>
+                <span class="img-wrapper" style="width:28%;padding-top:28%"><img src="/ImageOutputs/Product/BrightnessConfigger/SS-01-Part_Light.png" /></span>
+                <span class="img-wrapper" style="width:28%;padding-top:28%"><img src="/ImageOutputs/Product/BrightnessConfigger/SS-02-Part_Dark_ja-JP.png" /></span>
+                <span class="img-wrapper" style="width:28%;padding-top:28%"><img src="/ImageOutputs/Product/BrightnessConfigger/SS-01-Part_Color.png" /></span>
             </span>
         </p>
     </section>
     <h2>対応環境</h2>
     <section>
-        Windows 10 バージョン1607以降<br />
-        対応ディスプレイは以下の2通り
-        <ul>
-            <li>輝度設定がOS側でできるディスプレイ</li>
-            <li>DDC/CIに対応かつVGA、DVI、HDMI、DPのいずれかで接続したディスプレイ</li>
-        </ul>
+        Windows 11 以降<br />
+        ディスプレイの輝度調整や入力切替には外部ディスプレイがDDC/CIに対応している必要があります。
     </section>
     <h2>配布ページ</h2>
     <section>
@@ -71,32 +67,24 @@
     <h2>なにをしているの</h2>
     <section>
         <p>
-            WMIとWin32の二つを使ってディスプレイの輝度を調整しています。
-            前者は組み込みディスプレイなどのアクションセンターから調整できるようなディスプレイを調整できる。
-            対して後者は外付けディスプレイなどのデフォルトでは調整できないものを操作できる。
-            DIVやHDMI経由の場合は、モニターがDDC/CIという規格を使って設定を適用しているようです。
+            モニタの接続・切断等の設定についてはWindows7以降で利用できる<a href="https://learn.microsoft.com/ja-jp/windows-hardware/drivers/display/ccd-apis">CCD API群</a>を利用し、Windows側へ指示を行っています。
+        </p>
+        <p>
+            ディスプレイの輝度調整や入力切替については、HDMIやDisplayPortの対応機器で利用できるDDC/CIによるコマンド(MCCS)をモニターへ送ることで行っています。
         </p>
     </section>
     <h2>Q&amp;A</h2>
     <section>
         <dl>
-            <dt>ディスプレイ名がおかしい</dt>
+            <dt>輝度調整や入力切替の変更ができない</dt>
             <dd>
-                組み込みディスプレイはおかしくなることが多そうです。
-                諦めてください。
+                モニターのリモコンやボタンを使用し、設定画面でDDC/CIが無効になっていないかご確認ください。
+                また、DDC/CIに対応していたとしても入力切替に対応していないようなケースもあり、その場合は別の対応するモニターをご利用いただく必要があります。
             </dd>
-            <dt>ディスプレイが表示されない</dt>
+            <dt>入力切替の表示名とディスプレイでの名前の組み合わせが異なる</dt>
             <dd>
-                タスクトレイのアイコンを右クリックし、更新を押してみてください。
-                ディスプレイの構成が変化した際は自動で更新されますが、外付けディスプレイの場合、ディスプレイ側が起動し終えるまでディスプレイを取得できないため、画面が表示されてから再度更新を押してみてください。
-                更新しても表示されない場合、諦めてください。
-            </dd>
-            <dt>Q: 起動しない。もしくはエラーが出る</dt>
-            <dd>
-                複数のこのアプリを同時実行しようとした場合、後から起動したアプリはバージョン情報を表示します。
-                また、起動は少し遅いですが慌てずお待ち下さい。
-                もし、強制終了をしたりしてアイコンがトレイに残った場合、マウスを合わせるなどしてアイコンを除去してからでないと仕様上トレイに表示されません。
-                それ以外の問題については、こちらのページに従って<a href="/Home/Contact/">お問合せください</a>。
+                規格上、やむを得ないケースと思われます。
+                特に、同じ種類の入力が3つ以上ある場合(HDMI1/2/3など)、同じ種類でサイズ違いのケース(HDMIとmini HDMIなど)、規格上存在しない入力のケース(主にUSB Type-C)については比較的発生しやすいものであるものの規格上に定義されておらず、各モニターで独自に番号を割り振られており現時点では対応を見送っています。
             </dd>
         </dl>
     </section>
@@ -104,12 +92,15 @@
     <section>
         <p>
             このアプリを利用した上で生じた損害を一切保証しません。
+            特に、各種モニターの設定をDDC/CIにて変更する関係上、モニターの設定をリセットする必要が出る可能性があることを留意ください。
         </p>
     </section>
     <h2>プライバシーポリシー</h2>
     <section>
         <p>
             このアプリは動作の上で知り得た情報を記録したり、ネットワークに送信したりすることはありません。
+            しかし、Windows側で然る項目に同意いただけていた場合、利用状況や不具合等の情報をMicrosoft Store経由で開発者が確認するケースがあります。
+            この際の情報は法的機関等の強制力のあるケースを除き、第三者へ提供することはありません。
         </p>
     </section>
 </section>
