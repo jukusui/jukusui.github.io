@@ -60,7 +60,7 @@
 <br><small>※ここでのUWPはコンテナ版のみではなくDesktop Bridgeを含むappx/msixパッケージ化済みアプリを指す</small></p></section><h2 id="想定していた方針">想定していた方針</h2><section><p>microsoft-edgeスキームの呼び出し元(例:Win+Rの際のexplorer.exe)の、CreateProcessをフックし、開く対象と引数を監視する。
 一致した時に引数などを上書きする。
 これにより、本来はmsedge.exeが開かれるべき部分で別のブラウザを指定したりURLの置換を行ったりできる。
-<span class="img-group"><span class="img-wrapper" style="width: 95%; padding-top: 21.87%"><img src="/ImageOutputs/../Images/R2DB_DllInjection.svg" alt="概略図"></span></span></p></section><h2 id="なにがダメなのか">なにがダメなのか</h2><section><p>主に2つ</p><ul>
+<span class="img-group"><span class="img-wrapper" style="width:95%;padding-top:21.87%"><img src="/ImageOutputs/../Images/R2DB_DllInjection.svg" alt="概略図"></span></span></p></section><h2 id="なにがダメなのか">なにがダメなのか</h2><section><p>主に2つ</p><ul>
 <li>リアルタイムでのプロセスの起動の監視が困難</li>
 <li>CreateProcessの呼ばれない場合の存在</li>
 </ul><p>1つめのプロセスの監視について、上の図で①として示した対象プロセスへの侵入であるが、プロセスの起動前に確実に行えるような手法はユーザー権限では存在しないようである。
