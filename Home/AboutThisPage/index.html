@@ -52,25 +52,24 @@
             <img src="/icon.svg" title="おぼえている" alt="ねむる" />
         </div>
         <p>
-            PCいじりとゲームが趣味のオタク。
-            プログラミングの出身がExcel VBAであることもあり、VB.NET経由で現在はC#が母語。
-            ゲームに関してはポケモンだったり、最近だとSplatoonだったりとコンソール系が基本。
-            <a href="https://mstdn.jp/@jukusui">mastodon(プライマリ)</a>
-            <a href="https://twitter.com/jukusui_zzz">twitter(セカンダリ)</a>
+            PCいじりとゲームが趣味のオタク。C#が母語。
+            ゲームに関してはポケモンだったり、Splatoonだったりとコンソール系が基本。
+        </p>
+        <p>
+            連絡用SNS:
+            <a href="https://mstdn.jp/@jukusui">Mastodon(ActivityPub系SNSからも連絡可)</a>
+            <a href="https://x.com/jukusui_zzz">Twitter(現X)</a>
         </p>
     </section>
 
     <h2>動作環境</h2>
     <section>
         <p>
-            最低限の表示はIE11でもできるようにしているが、一部の装飾に対応していない。
-            なので、Chrome、Edge、FireFox、Safari等のモダンブラウザの最新版を推奨。
-            表示確認はWin10上のFireFoxをメインに、Chrome、Edge、IEの最新版で行っています。
+            Chrome、Edge、FireFox、Safari等のモダンブラウザの最新版を推奨します。
+            表示確認はWindows上のFireFoxをメインに、Chrome、Edgeの最新版で行っています。
         </p>
         <p>
-            これら以外の環境のために追加のコードを書いたり、PolyFillを追加するつもりは基本的にありません。
-            Win7&amp;IE11で使っている人も<time datetime="2020-1-14">2020年の頭</time>にはサポートが切れますしOSのアップデートは如何でしょうか。
-            <s>8とか8.1の人は10にアップデートしてる...よね?</s>
+            これら以外の環境のために追加のコードを書いたり、PolyFillを追加するつもりはありません。
         </p>
     </section>
 
@@ -78,14 +77,28 @@
     <section>
         <h3>ホスティング</h3>
         <section>
-            <h4><a href="https://pages.github.com/">GitHub Pages</a></h4>
+            <h4><a href="https://pages.github.com/">GitHub <s>Pages</s></a></h4>
             <section>
                 <p>
-                    いわずと知れたGitリポジトリ ホスティングサービス、「GitHub」の機能の一つ。
-                    無料で静的なWebサイトを開ける。
-                    Gitでバージョン管理しながらホスティングできるので修正なんかの記録が残り便利。
-                    静的HTML生成ツールのJekyllが組み込まれているのでマークダウンを放り込むだけでもそれなりに動くとか。
-                    ただしJekyllはこのサイトでは使用していない。
+                    <s>
+                        いわずと知れたGitリポジトリ ホスティングサービス、「GitHub」の機能の一つ。
+                        無料で静的なWebサイトを開ける。
+                        Gitでバージョン管理しながらホスティングできるので修正なんかの記録が残り便利。
+                        静的HTML生成ツールのJekyllが組み込まれているのでマークダウンを放り込むだけでもそれなりに動くとか。
+                        ただしJekyllはこのサイトでは使用していない。
+                    </s>
+                </p>
+                <p>
+                    ソースコードの管理はGitHubを継続していますがホスティングは下記Cloudflare Pagesに移行しました。
+                </p>
+            </section>
+            <h4><a href="https://pages.cloudflare.com/">Cloudflare Pages</a></h4>
+            <section>
+                <p>
+                    上記同様に無料で静的なWebサイトのホスティングが可能。
+                    簡単な設定でGitHubリポジトリと連携可能で、プッシュ時に自動でビルドやデプロイ可能。使い勝手としてはほぼ上記と同じ感じ。
+                    個人的には、ドメインの管理もCloudflareに任せられる点、
+                    デプロイスロット機能も備えており、修正内容のプレビュー用に使ったり巻き戻しも簡単にできる点がGitHub Pagesより便利。
                 </p>
             </section>
         </section>
@@ -94,8 +107,13 @@
             <h4><a href="https://www.asp.net/">ASP.NET Core</a></h4>
             <section>
                 <p>
-                    .Net Frameworkを使用したWebサイト用のライブラリ。
-                    後々、Linuxでホストすることも考慮しCore版を採用。
+                    <s>
+                        .Net Frameworkを使用したWebサイト用のライブラリ。
+                        後々、Linuxでホストすることも考慮しCore版を採用。
+                    </s>
+                    .NET上で動作するWebサイト用のライブラリ。.Net Frameworkの方は塩漬け運用以外には向かなくなりましたね…
+                </p>
+                <p>
                     本当は動的なサイト用であるがクローラ的な動作をするプログラムを追加し、
                     適当なフォルダにHTML等を放り投げられるように改造して使用。
                 </p>
@@ -125,6 +143,7 @@
                     このサイトではVisual Studioのダークテーマ風にアレンジして使用している。
                 </p>
             </section>
+        </section>
     </section>
 </section>
 
