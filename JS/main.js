@@ -760,6 +760,14 @@ if (history.pushState !== undefined && window.onpopstate !== undefined)
         }
     }());
 ///<reference path="./main.ts"/>
+/**
+ * C#のUri.EscapeDataStringに相当する処理
+ * @param input 入力文字列
+ * @returns エスケープ後の文字列
+ */
+function EscapeDataString(input) {
+    return encodeURIComponent(input).replace(/[!'()*]/g, (c) => '%' + c.charCodeAt(0).toString(16).toUpperCase());
+}
 LoadManager.AddItem(new class TocManager extends LoadManager {
     Ready() {
         var toc = document.getElementById("toc");
@@ -798,7 +806,7 @@ LoadManager.AddItem(new class TocManager extends LoadManager {
                                 // 以前にアクティブな項目があり、それが現在と異なる場合、強調を解除
                                 if (currentId !== null)
                                     toc.querySelector("a.current")?.classList?.remove("current");
-                                var target = toc.querySelector(`a[href="#${encodeURIComponent(last.id)}"]`);
+                                var target = toc.querySelector(`a[href="#${EscapeDataString(last.id)}"]`);
                                 currentId = last.id;
                                 if (target) {
                                     target.classList.add("current");
@@ -812,7 +820,7 @@ LoadManager.AddItem(new class TocManager extends LoadManager {
                             currentId = null;
                         }
                         if (currentId !== null) {
-                            var target = toc.querySelector(`a[href="#${encodeURIComponent(last.id)}"]`);
+                            var target = toc.querySelector(`a[href="#${EscapeDataString(last.id)}"]`);
                             if (target) {
                                 var pos = target.offsetTop + target.scrollTop + target.clientHeight / 2;
                                 toc.scrollTop = pos - toc.clientHeight / 2;
@@ -824,7 +832,7 @@ LoadManager.AddItem(new class TocManager extends LoadManager {
                     toc.style.maxHeight = null;
                     if (currentId !== null) {
                         currentId = null;
-                        toc.querySelector("a.current").classList.remove("current");
+                        toc.querySelector("a.current")?.classList?.remove("current");
                     }
                 }
             };
