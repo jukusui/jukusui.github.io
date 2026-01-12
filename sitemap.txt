@@ -2,6 +2,8 @@ https://www.jukusui.net/
 https://www.jukusui.net/Home/AboutThisPage/
 https://www.jukusui.net/Home/Contact/
 https://www.jukusui.net/Home/License/
+https://www.jukusui.net/Memo/CreateShellHost/
+https://www.jukusui.net/Memo/CreateShellHost/AMP/
 https://www.jukusui.net/Memo/NotifyIconHighDPI/
 https://www.jukusui.net/Memo/NotifyIconHighDPI/AMP/
 https://www.jukusui.net/Memo/R2DB_DllInjection/

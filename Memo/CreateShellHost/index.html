@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja" id="html">
+<head id="head">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Jukusui" />
+    <meta data-start="head" />
+    <title>クイック設定ライクなアプリの作り方 - ねむねごメモ</title>
+        <meta name="description" content="モダンな見た目にするための描画技術選定について" />
+        <meta name="keywords" content="develop,DWM,Win32 API,UWP,もにまね" />
+        <link rel="amphtml" href="/Memo/CreateShellHost/AMP/" />
+    <meta data-end="head" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.svg" type="image/svg" sizes="any" />
+    <link rel="mask-icon" href="/favicon.svg" type="image/svg" color="black" />
+    <meta name="theme-color" content="#7b00ff" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#7b00ff" />
+        <link rel="stylesheet" href="/CSS/main.min.css" />
+        <script src="/JS/main.min.js"></script>
+    <script src="/Lib/Prism/prism.js"></script>
+</head>
+<body id="body" class="c2 HasToc" data-replace="body-class">
+    <input id="menu-checkbox" type="checkbox" />
+    <input id="img-checkbox" type="checkbox" />
+    <header id="header">
+        <label for="menu-checkbox"><span></span><span></span><span></span></label>
+        <a href="/">ねむねごメモ</a>
+            <a href="/Category/develop/">develop</a>
+
+        <a href="/Product/">product</a>
+        <label id="menu-overlay" for="menu-checkbox" class="overlay"></label>
+        <span id="img-overlay" class="overlay no-ripple"><span></span></span>
+        <label id="img-input" for="img-checkbox"></label>
+    </header>
+    <meta data-start="body" />
+        <div id="toc-space">
+            <nav id="toc" class="rect sticky">
+                
+    <a href="#%E3%82%AF%E3%82%A4%E3%83%83%E3%82%AF%E8%A8%AD%E5%AE%9A%E3%83%A9%E3%82%A4%E3%82%AF%E3%81%AA%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E4%BD%9C%E3%82%8A%E6%96%B9">クイック設定ライクなアプリの作り方</a><div><a href="#%E6%A6%82%E8%A6%81">概要</a><a href="#%E7%B5%90%E8%AB%96%E3%83%BB%E8%A6%81%E7%B4%84">結論・要約</a><a href="#%E5%8B%95%E4%BD%9C%E7%92%B0%E5%A2%83">動作環境</a><a href="#%E3%82%AF%E3%82%A4%E3%83%83%E3%82%AF%E8%A8%AD%E5%AE%9A%E3%82%92%E7%9F%A5%E3%82%8B%28%E8%A6%8B%E3%81%9F%E7%9B%AE%E7%B7%A8%29">クイック設定を知る(見た目編)</a><div><a href="#1.%20%E8%83%8C%E6%99%AF%E8%89%B2%E3%81%AF%E8%A3%8F%E3%81%AB%E5%90%88%E3%82%8F%E3%81%9B%E3%82%8B">1. 背景色は裏に合わせる</a><a href="#2.%20%E5%91%A8%E5%9B%B24%E8%BE%BA%E3%81%AB%E3%81%AF%E5%BD%B1">2. 周囲4辺には影</a><a href="#3.%20%E5%80%8B%E4%BA%BA%E8%A8%AD%E5%AE%9A%E3%81%A7%E8%89%B2%E4%BB%98%E3%81%91">3. 個人設定で色付け</a><a href="#4.%20%E8%A7%92%E4%B8%B8%E3%81%AE%E5%88%A9%E7%94%A8">4. 角丸の利用</a><a href="#5.%20%E8%A1%A8%E7%A4%BA%E3%82%A2%E3%83%8B%E3%83%A1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3">5. 表示アニメーション</a></div><a href="#%E3%82%AF%E3%82%A4%E3%83%83%E3%82%AF%E8%A8%AD%E5%AE%9A%E3%82%92%E7%9F%A5%E3%82%8B%28%E6%93%8D%E4%BD%9C%E7%B7%A8%29">クイック設定を知る(操作編)</a><div><a href="#%E5%BD%B1%E9%83%A8%E5%88%86%E3%81%AE%E5%AE%9F%E8%A3%85">影部分の実装</a><a href="#%E3%82%BF%E3%82%B9%E3%82%AF%E3%83%90%E3%83%BC%E3%81%AA%E3%81%A9%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E6%8C%99%E5%8B%95">タスクバーなどに関する挙動</a><div><a href="#%E4%BD%9C%E6%A5%AD%E9%A0%98%E5%9F%9F%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">作業領域について</a><a href="#%E3%82%BF%E3%82%B9%E3%82%AF%E3%83%90%E3%83%BC%E3%81%AE%E8%A1%A8%E7%A4%BA%E5%88%B6%E5%BE%A1">タスクバーの表示制御</a></div></div><a href="#UI%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF%E9%81%B8%E5%AE%9A">UIフレームワーク選定</a><div><a href="#Acrylic%E5%8A%B9%E6%9E%9C%E3%81%AE%E5%AE%9F%E8%A3%85%E6%89%8B%E6%AE%B5">Acrylic効果の実装手段</a></div><a href="#UWP%E5%88%A9%E7%94%A8%E6%99%82%E3%81%AE%E6%B3%A8%E6%84%8F%E7%82%B9">UWP利用時の注意点</a><div><a href="#App%20Container%E7%92%B0%E5%A2%83%E3%81%AE%E5%88%B6%E7%B4%84">App Container環境の制約</a><a href="#Xaml%20Islands%E3%81%AE%E5%88%A9%E7%94%A8">Xaml Islandsの利用</a><a href="#.NET%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%81%AE%E6%B3%A8%E6%84%8F%E7%82%B9">.NETバージョンの注意点</a></div><a href="#%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB">おわりに</a></div>
+
+            </nav>
+        </div>
+    <article id="main">
+
+    <section id="first" class="rect"> <h1 id="クイック設定ライクなアプリの作り方">クイック設定ライクなアプリの作り方</h1></section>
+    <aside id="info" class="rect">
+        <section>
+            <span class="publish">公開日 2026/01/12</span>
+        </section>
+        <section id="category">
+                <a class="button category" href="/Category/develop/">develop</a>
+        </section>
+        <section id="tag">
+                <a class="button tag" href="/Tag/DWM/">DWM</a>
+                <a class="button tag" href="/Tag/Win32%20API/">Win32 API</a>
+                <a class="button tag" href="/Tag/UWP/">UWP</a>
+                <a class="button tag" href="/Tag/%E3%82%82%E3%81%AB%E3%81%BE%E3%81%AD/">もにまね</a>
+        </section>
+    </aside>
+
+        <section id="article" class="rect">
+    <h2 id="概要">概要</h2><section><p>常駐系のアプリケーションを作成する場合、タスクトレイへの常駐 + アイコン周辺に一時的なUI表示、というパターンでの設計となるケースは多数あると思います。
+例えばWindows標準に限ると、Win+Aで開く音量調整やWiFi接続の設定を行うUI(クイック設定)、OneDriveの同期状況表示等が例に挙がります。</p><p>このメモでは、もにまね作成時に得られたクイック設定同等なUIを作成するための記録を共有します。</p><p><span class="img-group"><span class="img-wrapper" style="width:45%;padding-top:47.25%"><img src="/ImageOutputs/Memo/CreateShellHost/WindowsVolume.png" data-size="0.45" alt="クイック設定画面"></span></span></p></section><h2 id="結論・要約">結論・要約</h2><section><ul>
+<li>UI再現の際は見た目だけでなくウィンドウのサイズや透過状況も把握することで、より正確かつ手を抜いた再現が可能</li>
+<li>もにまねではUWP(WinUI2)のXaml Islandsを利用しており、容易さと再現性のバランスでは現時点の最適解
+<ul>
+<li>Direct Xを利用する解などについては未調査だが寄り再現性を高められる可能性はある</li>
+<li>WPFやWinUI3は調査の結果、アニメーション関連での制約あり</li>
+<li>UWPは.Net Core 3.1だけでなく、.NET 9以降でも使えるが情報は少な目</li>
+</ul>
+</li>
+</ul></section><h2 id="動作環境">動作環境</h2><section><p>下記メモは2025年末、Windows 11 25H2環境での動作を前提としています。
+今後のアップデートにより挙動が変わる可能性がある点に注意してください。</p></section><h2 id="クイック設定を知る(見た目編)">クイック設定を知る(見た目編)</h2><section><p>まずは、Windows 11のクイック設定画面をまねるに当たって構成要素を確認してみましょう。</p><p><span class="img-group"><span class="img-wrapper" style="width:45%;padding-top:25.31%"><img src="/ImageOutputs/Memo/CreateShellHost/VolumeSpecs.png" data-size="0.45" alt="クイック設定画面の要件"></span></span></p><p>パッと見た感じや文章として示すだけの場合、そこまで難しい要件ではないように見えます。
+実際、それぞれの要素要素はそこまで難しくないのですが組み合わせで面倒なケースが見えてきます。</p><h3 id="1. 背景色は裏に合わせる">1. 背景色は裏に合わせる</h3><section><p>Windows 11では、Mica(マイカ)と呼ばれる塗られ方をするデザインが一般的なウィンドウ背景などに使われています。</p><blockquote>
+<p><a href="https://learn.microsoft.com/ja-jp/windows/apps/design/style/mica">マイカ素材 (Windows Learn)</a></p>
+<p>マイカは、アプリや設定などの長時間のウィンドウの背景を塗り分け、テーマとデスクトップの壁紙を組み込んだ不透明で動的な素材です。</p>
+</blockquote><p>対してWindows 10では、Acrylic(アクリル)と呼ばれる塗り方が主流でしたが、一部用途ではWindows 11でも利用されています。</p><blockquote>
+<p><a href="https://learn.microsoft.com/ja-jp/windows/apps/design/style/acrylic">アクリル素材 (Windows Learn)</a></p>
+<p>アクリルは、半透明のテクスチャを作成するブラシの一種です。 アクリルをアプリ サーフェスに適用すると、奥行きを加えたり、視覚的な階層を確立したりすることができます。</p>
+</blockquote><p>両者ともに背景の色に合わせて色が変わる点では共通していますが、Micaはデスクトップ壁紙、Acrylicはすぐ下の色を利用しています。
+使い分けとしては長時間のMica/短時間のAcrylicとなっています。
+上記のとおり、Windows11ではMicaだけでなくAcrylicも引き続き利用されており、クイック設定でもAcrylicが利用されています。</p></section><h3 id="2. 周囲4辺には影">2. 周囲4辺には影</h3><section><p>ウィンドウ端には影がついており、背景が白でもグレーに見えます。
+特に意識せずにウィンドウを作成すればWindows管理で標準な影を落とすことが可能です。
+しかし後述する通り位置・サイズ固定のウィンドウ特有の課題があるため独自実装が必要になります。</p></section><h3 id="3. 個人設定で色付け">3. 個人設定で色付け</h3><section><p>Windows 8および10以降、Windowsでの個人設定として各種色の設定が可能となっています。
+押下済みのボタンなどをAccent Colorで色付けすることや、Light/DarkのThemeに応じて背景色の明暗を変える必要があります。
+この際、単に起動時に色を取得するだけでなく、設定変更時にリアルタイムで反映させる必要も出てきます。
+最近のUIフレームワークでは標準で追従してくれますが、条件次第ではアプリ側で変化を検知する必要が出ます。</p></section><h3 id="4. 角丸の利用">4. 角丸の利用</h3><section><p>Windows 11では、ウィンドウの角やUI要素の角が丸くなっています。
+この角丸についてもOS標準でウィンドウの四隅は切り取ることができますが、こちらについてもしっかりとした作りこみのためには独自実装が必要でしょう。</p></section><h3 id="5. 表示アニメーション">5. 表示アニメーション</h3><section><p>勢いよく滑ってきて、ゆっくり止まる。Easingの効いたアニメーションが採用されています。
+もにまねでは、CubicBezier(3次ベジェ曲線)のEasing Function、表示：250ms、クローズ：167msで近似させています。
+なるべく滑らかに動かすためには実装に工夫が必要ですが、多要素との兼ね合いで実装が困難になる原因でもあります。</p></section></section><h2 id="クイック設定を知る(操作編)">クイック設定を知る(操作編)</h2><section><p>見た目で分からなくてもよく確認すると変な仕様になっている部分も存在します。</p><h3 id="影部分の実装">影部分の実装</h3><section><p>Win11で閲覧中の方は、スタートメニューとクイック設定の両者について、タスクバーとの隙間(一番下の影が出ている部分)をクリックしてみてください。
+スタートメニューは閉じ、クイック設定は閉じない挙動が確認できたかと思います。
+両者ともにMicrosoftが作成するタスクバーから起動するウィンドウであるにも関わらず挙動が異なります。</p><p>マウスクリックを透過する/しないの差が発生しているかのような挙動ですが、それも違います。
+マウスカーソルを乗せると十字やI字に変わる、ペイントやメモ帳のようなアプリをスタートメニュー下に配置してもカーソルは変化しません。</p><p>上記から言えることは、スタートメニューは影をクリックしたらウィンドウを閉じる処理が入っており、クイック設定は影をクリックしても何もしないということです。</p><p>筆者が試す限りWindowsでは、色は付けられるが全面クリック透過なウィンドウ or 色が完全に透明な部分のみクリック透過なウィンドウ は実現可能ですが、色が不透明だが指定した領域のみクリック透過なウィンドウは実現はできなさそうでした。
+影部分を完全にクリック透過するには、複数ウィンドウ(クリック透過な影を描く大きいウィンドウ + クリック非透過なUIパーツを描く小さいウィンドウ)を利用することになりそうでした。
+もにまねでは、 <del>Microsoftもサボってるみたいですし</del> 影をクリック透過にするのは見送り、スタート同等の仕様で抑えました。</p></section><h3 id="タスクバーなどに関する挙動">タスクバーなどに関する挙動</h3><section><p>タスクバーを除いた領域を手軽に得る方法として作業領域(Work Area)の取得があります。
+<code>SystemParametersInfo</code>関数の<code>SPI_GETWORKAREA</code>で取得可能な情報であり手軽にプライマリモニタのタスクバーを除いた長方形を得られます。
+しかし、一般的な全画面表示アプリケーションとは異なりタスクバーから呼び出す都合で注意点が存在します。</p><h4 id="作業領域について">作業領域について</h4><section><p>タスクバーが自動的に隠れる設定になっている場合、作業領域はタスクバーが表示されていない状態の領域を返します。
+しかし、クイック設定はタスクバーが表示されている状態を前提に表示する必要があり、タスクバーのサイズを確実にモニターサイズから減算する必要があります。</p><p>同様にアプリバー(アプリケーション デスクトップ ツールバー)がある場合も注意が必要です。
+アプリバーはOneNoteの「表示/デスクトップの端に表示」などで利用される機能です。
+アプリバーも作業領域から除外されますが、クイック設定の表示領域は作業領域とは異なるルールで決定されます。
+具体的には右にあるアプリバーを無視し、下にあるアプリバーは被らないように尊重します。
+<span class="img-group"><span class="img-wrapper" style="width:45%;padding-top:25.31%"><img src="/ImageOutputs/Memo/CreateShellHost/AppBarRight.png" data-size="0.45" alt="アプリバーを右に出した場合"></span><span class="img-wrapper" style="width:45%;padding-top:25.31%"><img src="/ImageOutputs/Memo/CreateShellHost/AppBarBottom.png" data-size="0.45" alt="アプリバーを下に出した場合"></span></span></p><p>なお、OneDriveは単純に作業領域に表示するため、タスクバーに被ったり、右にアプリバーがあるとより左側に出現します。
+さらなるイレギュラーケースとして、タブレットモードでのタスクバー(高さが変わる)への対応ができていませんが、現時点では未対応状況でのリリースとなっています。</p></section><h4 id="タスクバーの表示制御">タスクバーの表示制御</h4><section><p>影部分の実装にて、スタートメニューとクイック設定で影部分のクリック挙動が異なることを説明しましが、タスクバー非表示時の挙動についても差異が存在します。
+スタートメニューはタスクバーが非表示の状態で起動した場合、タスクバーが表示されるまで閉じない挙動となります。
+対して、クイック設定はタスクバーが非表示の状態で起動した場合、タスクバーが表示されると同時に閉じる挙動となります。</p><p>なお、単純に実装するとクイック設定同様に画面表示すると同時にタスクバーが非表示になってしまいます。
+<del>Microsoftサボりすぎでは...</del></p><p>もにまねでは、スタートメニューと同様の挙動を採用しています。
+具体的な方法として、独自ウィンドウの親ウィンドウをタスクバーに設定することで、タスクバーが非表示の状態で起動しても独自ウィンドウがアクティブな限り、タスクバーも表示状態を維持してくれます。</p></section></section></section><h2 id="UIフレームワーク選定">UIフレームワーク選定</h2><section><p>2025年末時点でのWindows向けUIフレームワークとしては、WindowsForms、WPF、UWP(WinUI2)、WinUI3、MAUIなどが存在します。
+透過処理、特にアクリル効果の再現に大きく関わるOSに近いレンダリング部分の視点で見ると、フレームワークは下記のとおりです。</p><dl>
+  <dt><a href="https://learn.microsoft.com/ja-jp/windows/windows-app-sdk/api/winrt/microsoft.ui.composition">Microsoft.UI.Composition</a></dt>
+  <dd>WinUI3(MAUI含む)</dd>
+  <dt><a href="https://learn.microsoft.com/ja-jp/uwp/api/windows.ui.composition">Windows.UI.Composition</a></dt>
+  <dd>UWP(WinUI2)</dd>
+  <dt><a href="https://learn.microsoft.com/ja-jp/windows/win32/directcomp/directcomposition-portal">DirectComposition</a></dt>
+  <dd>(上記Composition系APIの内部で利用されている可能性はあるが直接利用は少ない)</dd>
+  <dt>DirectX</dt>
+  <dd>WPF、(他UIでも間接的な利用はされているはず)</dd>
+  <dt>GDI/GDI+</dt>
+  <dd>WindowsForms</dd>
+</dl><h3 id="Acrylic効果の実装手段">Acrylic効果の実装手段</h3><section><p>GitHubの<a href="https://github.com/selastingeorge/Win32-Acrylic-Effect">selastingeorge/Win32-Acrylic-Effect</a>を見ると涙ぐましい努力が垣間見れます。</p><p>横断的に利用可能なのは<code>SetWindowCompositionAttribute</code>です。
+Win10時代から存在する非公開な利用法があり、ウィンドウ「全体に」アクリル効果を付与することが可能です。
+このウィンドウ「全体」というのが厄介で、半透明な部分全体に影響が出てしまうため、影部分も含めてアクリル効果が付与されてしまいます。</p><p>把握している中では最も新しく、上記を公式化したような挙動をするのがMicrosoft.UI.Compositionの<a href="https://learn.microsoft.com/ja-jp/windows/windows-app-sdk/api/winrt/microsoft.ui.composition.systembackdrops.desktopacryliccontroller"><code>DesktopAcrylicController</code></a>です。
+こちらはウィンドウの枠(影部分)へのアクリル効果付与は避けられますが、完全な透過とアクリル効果を描き分けるようなことはやはりできません。</p><p>より高度な実装を簡単にできるのはWindows.UI.Compositionです。
+<code>BackgroundSource="HostBackdrop"</code>な<a href="https://learn.microsoft.com/ja-jp/uwp/api/windows.ui.xaml.media.acrylicbrush"><code>AcrylicBrush</code></a>でアクリル効果を持たせたい領域だけ塗れば良いです。</p><p>さらに細かい実装を行うとしたらDirectCompositionやDirectXを直接利用する方法もないことは無いようです。
+しかし、非公式APIを利用することは避けられず、将来のOSアップデートで動作しなくなるリスクが高いですし、実装難易度も上がります。</p><p>なお、WPFについては<a href="https://github.com/dotnet/wpf/issues/8538">Windows11テーマへの対応作業</a>が進んでいますが、MicaやAcrylicへのサポートは<a href="https://github.com/dotnet/wpf/issues/8545">まだ対応中</a>のようです。</p><p>上記の通り、ウィンドウ全体にアクリル効果を付与するだけであれば比較的容易に実装可能ですが</p><ul>
+<li>角丸部分は透過</li>
+<li>影部分も透過</li>
+<li>出てくるアニメーション時もアクリル効果を維持</li>
+<li>アニメーションをウィンドウの位置とサイズを変えて実装すると負荷が高い(滑らかに動きにくい)</li>
+</ul><p>などの課題があるため現時点では容易に実装するならWindows.UI.Composition系APIを利用するのが唯一の選択肢と思われます。</p></section></section><h2 id="UWP利用時の注意点">UWP利用時の注意点</h2><section><p>UWP(WinUI2)は基本的にはWindows Storeアプリ向けのフレームワークですが、もにまねのようなデスクトップアプリからも利用可能です。
+しかし、UWPを利用する場合はいくつか注意点があります。</p><h3 id="App Container環境の制約">App Container環境の制約</h3><section><p>もにまねではUWPのAPIを利用してはいますが、狭義のUWPからは外れています。
+狭義のUWP、すなわちApp Container環境で動作するUWPアプリの場合、セキュリティ制約の大きいサンドボックス環境で動作します。
+ファイルへのアクセスなどの制約ももちろんありますが、今回のような用途の場合はウィンドウ制御に関する制約が問題となります。
+具体的には、App Container環境のUWPアプリでは下記のような制約があります。</p><ul>
+<li>ウィンドウの位置やサイズを自由に変更できない</li>
+<li>タイトルバーのカスタマイズが制限される(閉じるボタンを消せない)</li>
+<li>透過ウィンドウが作成できない</li>
+</ul><p>回避策がある可能性はありますが、もにまねではXaml Islandsを利用することでこれらの制約を回避しています。</p></section><h3 id="Xaml Islandsの利用">Xaml Islandsの利用</h3><section><p><a href="https://learn.microsoft.com/ja-jp/windows/apps/desktop/modernize/xaml-islands/xaml-islands">Xaml Islands</a>は、UWPのXAML UIコンポーネントを従来のデスクトップアプリケーション(Win32アプリ)で利用するための技術です。
+WinForms内でWPFを使うHwndSourceなどと同様に、Win32ウィンドウの上にXaml Islands管理のWin32ウィンドウが重なるような形で動作します。</p><p>なお、<a href="https://learn.microsoft.com/ja-jp/windows/apps/api-reference/interface-members/ixamlsourcetransparency-isbackgroundtransparent">IXamlSourceTransparency</a>を利用することでXaml Islands管理される部分の透過も可能になります。
+これを透明なWin32ウィンドウに重ねることで、影部分のような半透明な部分は半透明に、アクリル効果の部分はアクリル効果が施された内容でレンダリングされます。</p></section><h3 id=".NETバージョンの注意点">.NETバージョンの注意点</h3><section><p>Xaml IslandsはCOM/WinRT(Windows Runtime)の都合で.NET Core 3.1もしくは.NET 9以降でのみ動作し、.NET 5-8、.NET Framework系では基本的には動作しません。
+もちろん、C++/WinRTを使う場合は.NETに依存しないため問題ありませんが、UIでC#を使う場合は注意が必要です。</p><p>また、.NET Core 3.1の頃は<a href="https://github.com/CommunityToolkit/Microsoft.Toolkit.Win32">Microsoft.Toolkit.Win32</a>にて容易に扱えるような整備がなされていましたが、現時点ではサポートされていません。
+そのため、.NET 9以降でXaml Islandsを利用する場合はWin32 API/WinRT呼び出しを自前で実装する必要があります。
+幸いドキュメントはある程度整備されており、Microsoft.Toolkit.Win32のソースコードもあることから比較的容易に実装可能です。
+特に.NET 9でのUWP利用については情報が少ないですが、<a href="https://devblogs.microsoft.com/ifdef-windows/preview-uwp-support-for-dotnet-9-native-aot/">Sergio Pedri氏のブログ記事</a>や<a href="https://github.com/microsoft/microsoft-ui-xaml/discussions/9983">GitHubでのDiscussion</a>を参考にすることをお勧めします。</p></section></section><h2 id="おわりに">おわりに</h2><section><p>本メモでは、Windows 11のクイック設定に似たUIを作成するための要件整理と、もにまねでの実装手法について共有しました。
+UIの再現を行う場合の透過関連の都合で現時点ではUWP(WinUI2)のXaml Islands以外を採用することは難しいと結論付けられると思います。
+もちろん、アニメーションの滑らかさを諦めて最新のWinUI3を採用するのも一つの選択肢です。
+今後のアップデートで挙動が変わる可能性もありますが、参考になれば幸いです。</p></section>
+</section>
+
+
+
+    <aside id="relative" class="rect">
+    <section>
+        <a href="/Memo/R2DB_DllInjection/" class="button no-color">UWPアプリとしてのR2DBの今後</a>
+        <span>全体</span>
+        <a href="" class="button no-color"></a>
+    </section>
+    <section>
+        <a href="/Memo/R2DB_DllInjection/" class="button no-color">UWPアプリとしてのR2DBの今後</a>
+        <span>develop</span>
+        <a href="" class="button no-color"></a>
+    </section>
+</aside>
+
+    </article>
+    <meta data-end="body" />
+    <div id="loader" class=" " data-replace="loader-class">
+        <div class="progress-ring"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <div id="center-info" data-replace="loaderCenter-innerHTML"></div>
+        <div id="loader-info">
+            <a class="button" onclick="OnReloadClick()">再読み込み</a>
+            <span id="loader-message" data-replace="loaderBottom-innerHTML"></span>
+        </div>
+    </div>
+    <footer id="footer">
+        <a href="/Home/AboutThisPage/">サイトの詳細</a>
+        <a href="/Home/Contact/">問い合わせ先</a>
+        <span>©2018 Jukusui</span>
+    </footer>
+</body>
+</html>
